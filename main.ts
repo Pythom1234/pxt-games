@@ -58,7 +58,8 @@ namespace games {
                         walls.removeElement(i)
                         score += 1
                         if (buzzer) {
-                            music.tonePlayable(Note.C, music.beat(BeatFraction.Sixteenth))
+                            music.ringTone(Note.C)
+                            music.stopAllSounds()
                         }
                         continue
                     }
@@ -74,12 +75,13 @@ namespace games {
                 OLED.draw()
             } else {
                 if (buzzer) {
-                    music.tonePlayable(Note.C, music.beat(BeatFraction.Quarter))
+                    music.ringTone(Note.C)
                 }
                 OLED.clear(true)
                 OLED.text("you lost", 32, 26, false)
                 OLED.text("score: " + score.toString(), 32, 37, false)
                 OLED.draw()
+                music.stopAllSounds()
             }
 
         })
