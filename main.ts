@@ -1,7 +1,16 @@
+enum Controlling {
+    //% block="buttons"
+    Buttons,
+    //% block="gyroscope"
+    Gyro
+}
+
+
+
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
-    //% block="flappy bird"
-    export function flappyBird(): void {
+    //% block="Flappy Bird (buzzer $buzzer, controlling $control)"
+    export function flappyBird(buzzer: boolean, control: Controlling): void {
         let add_y = 0
         let air_time = 5
         OLED.init()
@@ -11,9 +20,17 @@ namespace games {
         let score = 0
         basic.forever(function on_forever() {
             if (live) {
-                if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
-                    air_time = 0
-                    add_y = 3
+                if (control == Controlling.Buttons) {
+                    if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
+                        air_time = 0
+                        add_y = 3
+                    }
+                }
+                if (control == Controlling.Gyro) {
+                    if (input.acceleration(Dimension.X) < -20) {
+                        air_time = 0
+                        add_y = 3
+                    }
                 }
 
                 if (add_y != 0) {
@@ -40,6 +57,9 @@ namespace games {
                     if (i.split(" ")[1] == "0") {
                         walls.removeElement(i)
                         score += 1
+                        if (buzzer) {
+                            music.tonePlayable(Note.C, music.beat(BeatFraction.Sixteenth))
+                        }
                         continue
                     }
                     if (2 < parseInt(i.split(" ")[1]) && parseInt(i.split(" ")[1]) < 9) {
@@ -53,6 +73,9 @@ namespace games {
                 }
                 OLED.draw()
             } else {
+                if (buzzer) {
+                    music.tonePlayable(Note.C, music.beat(BeatFraction.Quarter))
+                }
                 OLED.clear(true)
                 OLED.text("you lost", 32, 26, false)
                 OLED.text("score: " + score.toString(), 32, 37, false)
