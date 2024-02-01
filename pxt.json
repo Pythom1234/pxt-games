@@ -3,7 +3,8 @@
     "description": "",
     "dependencies": {
         "core": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "pxt-OLED": "github:pythom1234/pxt-oled#9ec7b86fc9f25d3f754aa66b0269da7dd2228663"
     },
     "files": [
         "main.ts",
