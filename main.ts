@@ -27,7 +27,7 @@ namespace games {
                     }
                 }
                 if (control == Controlling.Gyro) {
-                    if (input.acceleration(Dimension.X) < -20) {
+                    if (input.acceleration(Dimension.Y) < -20) {
                         air_time = 0
                         add_y = 3
                     }
