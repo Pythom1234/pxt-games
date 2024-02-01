@@ -11,7 +11,7 @@ enum Controlling {
 namespace games {
     //% block="Flappy Bird (buzzer $buzzer, controlling $control)"
     export function flappyBird(buzzer: boolean, control: Controlling): void {
-        music.setBuiltInSpeakerEnabled(false)
+        pins.setAudioPinEnabled(true)
         let add_y = 0
         let air_time = 5
         OLED.init()
@@ -59,7 +59,7 @@ namespace games {
                         walls.removeElement(i)
                         score += 1
                         if (buzzer) {
-                            music.tonePlayable(Note.C, music.beat(BeatFraction.Whole))
+                            pins.analogPitch(512, 5)
                         }
                         continue
                     }
@@ -75,7 +75,7 @@ namespace games {
                 OLED.draw()
             } else {
                 if (buzzer) {
-                    music.tonePlayable(Note.C, music.beat(BeatFraction.Whole))
+                    pins.analogPitch(512, 10)
                 }
                 OLED.clear(true)
                 OLED.text("you lost", 32, 26, false)
