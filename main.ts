@@ -47,7 +47,7 @@ namespace games {
                 if (y < 0 || y > 62) {
                     live = false
                     if (buzzer) {
-                        pins.analogPitch(512, 50)
+                        pins.analogPitch(512, 100)
                     }
                 }
 
@@ -62,7 +62,7 @@ namespace games {
                         walls.removeElement(i)
                         score += 1
                         if (buzzer) {
-                            pins.analogPitch(512, 5)
+                            pins.analogPitch(512, 30)
                         }
                         continue
                     }
@@ -70,7 +70,7 @@ namespace games {
                         if (!(parseInt(i.split(" ")[0]) - 10 < y && y < parseInt(i.split(" ")[0]) + 10)) {
                             live = false
                             if (buzzer) {
-                                pins.analogPitch(512, 50)
+                                pins.analogPitch(512, 100)
                             }
                         }
                     }
