@@ -1,4 +1,4 @@
-//% icon="\uf11b" color="#ffff00"
+//% icon="\uf11b" color="#ff5f00"
 namespace games {
     //% block="gameA"
     //% block.loc.cs="hraA"
