@@ -46,6 +46,9 @@ namespace games {
 
                 if (y < 0 || y > 62) {
                     live = false
+                    if (buzzer) {
+                        pins.analogPitch(512, 50)
+                    }
                 }
 
                 OLED.clear(false)
@@ -66,6 +69,9 @@ namespace games {
                     if (2 < parseInt(i.split(" ")[1]) && parseInt(i.split(" ")[1]) < 9) {
                         if (!(parseInt(i.split(" ")[0]) - 10 < y && y < parseInt(i.split(" ")[0]) + 10)) {
                             live = false
+                            if (buzzer) {
+                                pins.analogPitch(512, 50)
+                            }
                         }
                     }
                     walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 1).toString()
@@ -74,9 +80,6 @@ namespace games {
                 }
                 OLED.draw()
             } else {
-                if (buzzer) {
-                    pins.analogPitch(512, 10)
-                }
                 OLED.clear(true)
                 OLED.text("you lost", 32, 26, false)
                 OLED.text("score: " + score.toString(), 32, 37, false)
