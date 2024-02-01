@@ -1,8 +1,7 @@
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
-    //% block="gameA"
-    //% block.loc.cs="hraA"
-    export function gameA(): void {
+    //% block="flappy bird"
+    export function flappyBird(): void {
         let add_y = 0
         let air_time = 5
         OLED.init()
@@ -11,7 +10,6 @@ namespace games {
         let walls = ["32 64"]
         let score = 0
         basic.forever(function on_forever() {
-
             if (live) {
                 if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
                     air_time = 0
