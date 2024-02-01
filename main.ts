@@ -11,6 +11,7 @@ enum Controlling {
 namespace games {
     //% block="Flappy Bird (buzzer $buzzer, controlling $control)"
     export function flappyBird(buzzer: boolean, control: Controlling): void {
+        music.setBuiltInSpeakerEnabled(false)
         let add_y = 0
         let air_time = 5
         OLED.init()
