@@ -62,7 +62,7 @@ namespace games {
                         walls.removeElement(i)
                         score += 1
                         if (buzzer) {
-                            pins.analogPitch(512, 30)
+                            pins.analogPitch(512, 20)
                         }
                         continue
                     }
