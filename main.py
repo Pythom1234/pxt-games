@@ -1,0 +1,2 @@
+@namespace
+class games:
