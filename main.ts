@@ -60,7 +60,7 @@ namespace games {
                     OLED.text("normal", 92, 0, true)
                 }
                 if (speed == Speed.Fast) {
-                    OLED.text("fast", 98, 0, true)
+                    OLED.text("fast", 100, 0, true)
                 }
                 if (speed == Speed.Furious) {
                     OLED.text("furious", 74, 0, true)
