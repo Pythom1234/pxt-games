@@ -87,6 +87,7 @@ namespace games {
                     OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, !color)
                     OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, !color)
                 }
+                /*
                 OLED.drawRect(0, 0, 127, 11, color, true)
                 OLED.drawLine(0, 11, 127, 11, !color)
                 OLED.text(score.toString(), 1, 1, !color)
@@ -103,6 +104,7 @@ namespace games {
                     OLED.text("furious", 73, 1, !color)
                 }
                 OLED.draw()
+                */
             } else {
                 OLED.clear(!color)
                 OLED.text("you lost", 32, 26, color)
