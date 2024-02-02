@@ -52,18 +52,18 @@ namespace games {
 
                 OLED.clear(color)
                 OLED.drawRect(5, y, 7, y + 2, !color, true)
-                OLED.text(score.toString(), 0, 0, !color)
+                OLED.text(score.toString(), 1, 1, !color)
                 if (speed == Speed.Slow) {
-                    OLED.text("slow", 97, 0, !color)
+                    OLED.text("slow", 96, 1, !color)
                 }
                 if (speed == Speed.Normal) {
-                    OLED.text("normal", 83, 0, !color)
+                    OLED.text("normal", 82, 1, !color)
                 }
                 if (speed == Speed.Fast) {
-                    OLED.text("fast", 99, 0, !color)
+                    OLED.text("fast", 98, 1, !color)
                 }
                 if (speed == Speed.Furious) {
-                    OLED.text("furious", 74, 0, !color)
+                    OLED.text("furious", 73, 1, !color)
                 }
                 if (parseInt(walls[walls.length - 1].split(" ")[1]) < 100) {
                     walls.push(randint(20, 44).toString() + " 127")
