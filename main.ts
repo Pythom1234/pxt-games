@@ -14,9 +14,9 @@ enum Speed {
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
     let lastScore = 0
-    //% block="Flappy Bird (buzzer $buzzer, speed $speed)"
+    //% block="Flappy Bird (buzzer $buzzer, speed $speed, color $color)"
     //% weight=99
-    export function flappyBird(buzzer: boolean, speed: Speed): void {
+    export function flappyBird(buzzer: boolean, speed: Speed, color: boolean): void {
         pins.setAudioPinEnabled(true)
         let play = true
         let exit = 3
@@ -50,20 +50,20 @@ namespace games {
                     }
                 }
 
-                OLED.clear(false)
-                OLED.drawRect(5, y, 7, y + 2, true, true)
-                OLED.text(score.toString(), 0, 0, true)
+                OLED.clear(color)
+                OLED.drawRect(5, y, 7, y + 2, !color, true)
+                OLED.text(score.toString(), 0, 0, !color)
                 if (speed == Speed.Slow) {
-                    OLED.text("slow", 97, 0, true)
+                    OLED.text("slow", 97, 0, !color)
                 }
                 if (speed == Speed.Normal) {
-                    OLED.text("normal", 83, 0, true)
+                    OLED.text("normal", 83, 0, !color)
                 }
                 if (speed == Speed.Fast) {
-                    OLED.text("fast", 99, 0, true)
+                    OLED.text("fast", 99, 0, !color)
                 }
                 if (speed == Speed.Furious) {
-                    OLED.text("furious", 74, 0, true)
+                    OLED.text("furious", 74, 0, !color)
                 }
                 if (parseInt(walls[walls.length - 1].split(" ")[1]) < 100) {
                     walls.push(randint(20, 44).toString() + " 127")
@@ -97,16 +97,16 @@ namespace games {
                     if (speed == Speed.Furious) {
                         walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 4).toString()
                     }
-                    OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, true)
-                    OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, true)
+                    OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, !color)
+                    OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, !color)
                 }
                 OLED.draw()
             } else {
-                OLED.clear(true)
-                OLED.text("you lost", 32, 26, false)
-                OLED.text("score: " + score.toString(), 32, 37, false)
+                OLED.clear(!color)
+                OLED.text("you lost", 32, 26, color)
+                OLED.text("score: " + score.toString(), 32, 37, color)
                 if (exit == 0) {
-                    OLED.text("press A or B", 20, 48, false)
+                    OLED.text("press A or B", 20, 48, color)
                 }
                 OLED.draw()
                 if (exit == 0) {
