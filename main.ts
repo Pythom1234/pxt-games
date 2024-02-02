@@ -100,6 +100,7 @@ namespace games {
                 if (exit == 0) {
                     if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
                         play = false
+                        lastScore = score
                         OLED.clear(false)
                         OLED.draw()
                     }
@@ -111,7 +112,7 @@ namespace games {
     }
     //% block="get last score"
     //% weight=100
-    export function score(): number {
+    export function getLastscore(): number {
         return lastScore
     }
 }
