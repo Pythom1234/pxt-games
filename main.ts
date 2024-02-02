@@ -1,10 +1,3 @@
-enum Controlling {
-    //% block="buttons"
-    Buttons,
-    //% block="gyroscope"
-    Gyro
-}
-
 enum Speed {
     //% block="slow"
     Slow,
@@ -18,8 +11,8 @@ enum Speed {
 
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
-    //% block="Flappy Bird (buzzer $buzzer, controlling $control, speed $speed)"
-    export function flappyBird(buzzer: boolean, control: Controlling, speed: Speed): void {
+    //% block="Flappy Bird (buzzer $buzzer, speed $speed)"
+    export function flappyBird(buzzer: boolean, speed: Speed): void {
         pins.setAudioPinEnabled(true)
         let play = true
         let add_y = 0
@@ -31,19 +24,10 @@ namespace games {
         let score = 0
         while (play) {
             if (live) {
-                if (control == Controlling.Buttons) {
-                    if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
-                        air_time = 0
-                        add_y = 3
-                    }
+                if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
+                    air_time = 0
+                    add_y = 3
                 }
-                if (control == Controlling.Gyro) {
-                    if (input.acceleration(Dimension.Y) < -20) {
-                        air_time = 0
-                        add_y = 3
-                    }
-                }
-
                 if (add_y != 0) {
                     y += 0 - add_y
                     add_y += 0 - 1
