@@ -63,10 +63,6 @@ namespace games {
                 OLED.clear(false)
                 OLED.drawRect(5, y, 7, y + 2, true, true)
                 OLED.text(score.toString(), 0, 0, true)
-                OLED.text(score.toString(), 0, 0, true)
-                OLED.text(score.toString(), 0, 0, true)
-                OLED.text(score.toString(), 0, 0, true)
-                OLED.text(score.toString(), 0, 0, true)
                 if (parseInt(walls[walls.length - 1].split(" ")[1]) < 100) {
                     walls.push(randint(20, 44).toString() + " 127")
                 }
