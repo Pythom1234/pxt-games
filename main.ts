@@ -23,7 +23,7 @@ enum RenderingLevel {
 namespace games {
     let lastScore = 0
     //% block="Flappy Bird |buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel"
-    //% rendernigLevel.defl="score"
+    //% rendernigLevel.defl=Score
     //% weight=99
     export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel): void {
         pins.setAudioPinEnabled(true)
