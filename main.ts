@@ -63,7 +63,7 @@ namespace games {
                     OLED.text("fast", 96, 0, true)
                 }
                 if (speed == Speed.Furious) {
-                    OLED.text("furious", 76, 0, true)
+                    OLED.text("furious", 74, 0, true)
                 }
                 if (parseInt(walls[walls.length - 1].split(" ")[1]) < 100) {
                     walls.push(randint(20, 44).toString() + " 127")
