@@ -98,6 +98,8 @@ namespace games {
                 if (exit == 0) {
                     if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
                         play = false
+                        OLED.clear(false)
+                        OLED.draw()
                     }
                 } else {
                     exit -= 1
