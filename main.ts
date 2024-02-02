@@ -92,7 +92,7 @@ namespace games {
                 OLED.text("you lost", 32, 26, false)
                 OLED.text("score: " + score.toString(), 32, 37, false)
                 if (exit == 0) {
-                    OLED.text("press A or B", 30, 48, false)
+                    OLED.text("press A or B", 16, 48, false)
                 }
                 OLED.draw()
                 if (exit == 0) {
