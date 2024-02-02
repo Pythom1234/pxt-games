@@ -17,6 +17,7 @@ namespace games {
     export function flappyBird(buzzer: boolean, speed: Speed): void {
         pins.setAudioPinEnabled(true)
         let play = true
+        let exit = 3
         let add_y = 0
         let air_time = 5
         OLED.init()
@@ -90,10 +91,16 @@ namespace games {
                 OLED.clear(true)
                 OLED.text("you lost", 32, 26, false)
                 OLED.text("score: " + score.toString(), 32, 37, false)
-                OLED.text("press A or B", 32, 48, false)
+                if (exit == 0) {
+                    OLED.text("press A or B", 30, 48, false)
+                }
                 OLED.draw()
-                if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
-                    play = false
+                if (exit == 0) {
+                    if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
+                        play = false
+                    }
+                } else {
+                    exit -= 1
                 }
             }
         }
