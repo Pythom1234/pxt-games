@@ -85,11 +85,7 @@ namespace games {
                 OLED.clear(true)
                 OLED.text("you lost", 32, 26, false)
                 OLED.text("score: " + score.toString(), 32, 37, false)
-                OLED.text("press A or B to continue" + score.toString(), 0, 48, false)
                 OLED.draw()
-                if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
-                    play = false
-                }
             }
         }
     }
