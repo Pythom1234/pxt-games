@@ -43,7 +43,7 @@ namespace games {
                     air_time += 1
                 }
 
-                if (y < 0 || y > 62) {
+                if (y < 0 || y > 53) {
                     live = false
                     if (buzzer) {
                         pins.analogPitch(512, 100)
@@ -52,21 +52,8 @@ namespace games {
 
                 OLED.clear(color)
                 OLED.drawRect(5, y, 7, y + 2, !color, true)
-                OLED.text(score.toString(), 1, 1, !color)
-                if (speed == Speed.Slow) {
-                    OLED.text("slow", 96, 1, !color)
-                }
-                if (speed == Speed.Normal) {
-                    OLED.text("normal", 82, 1, !color)
-                }
-                if (speed == Speed.Fast) {
-                    OLED.text("fast", 98, 1, !color)
-                }
-                if (speed == Speed.Furious) {
-                    OLED.text("furious", 73, 1, !color)
-                }
                 if (parseInt(walls[walls.length - 1].split(" ")[1]) < 100) {
-                    walls.push(randint(20, 44).toString() + " 127")
+                    walls.push(randint(22, 42).toString() + " 127")
                 }
                 for (const i of walls) {
                     if (parseInt(i.split(" ")[1]) <= 0) {
@@ -99,6 +86,20 @@ namespace games {
                     }
                     OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, !color)
                     OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, !color)
+                }
+                OLED.drawRect(0,0,127,11,color,true)
+                OLED.text(score.toString(), 1, 1, !color)
+                if (speed == Speed.Slow) {
+                    OLED.text("slow", 96, 1, !color)
+                }
+                if (speed == Speed.Normal) {
+                    OLED.text("normal", 82, 1, !color)
+                }
+                if (speed == Speed.Fast) {
+                    OLED.text("fast", 98, 1, !color)
+                }
+                if (speed == Speed.Furious) {
+                    OLED.text("furious", 73, 1, !color)
                 }
                 OLED.draw()
             } else {
