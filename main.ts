@@ -13,7 +13,9 @@ enum Speed {
 
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
+    let lastScore = 0
     //% block="Flappy Bird (buzzer $buzzer, speed $speed)"
+    //% weight=99
     export function flappyBird(buzzer: boolean, speed: Speed): void {
         pins.setAudioPinEnabled(true)
         let play = true
@@ -106,5 +108,10 @@ namespace games {
                 }
             }
         }
+    }
+    //% block="get last score"
+    //% weight=100
+    export function score(): number {
+        return lastScore
     }
 }
