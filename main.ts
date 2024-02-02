@@ -92,6 +92,7 @@ namespace games {
                 OLED.drawLine(0, 11, 127, 11, !color)
                 */
                 OLED.text(score.toString(), 1, 1, !color)
+                /*
                 if (speed == Speed.Slow) {
                     OLED.text("slow", 96, 1, !color)
                 }
@@ -104,6 +105,7 @@ namespace games {
                 if (speed == Speed.Furious) {
                     OLED.text("furious", 73, 1, !color)
                 }
+                */
                 OLED.draw()
             } else {
                 OLED.clear(!color)
