@@ -8,8 +8,6 @@ enum Controlling {
 enum Speed {
     //% block="fast"
     Fast,
-    //% block="medium"
-    Medium,
     //% block="slow"
     Slow
 }
@@ -88,9 +86,6 @@ namespace games {
                     }
                     if (speed == Speed.Fast) {
                         walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 2).toString()
-                    }
-                    if (speed == Speed.Medium) {
-                        walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 1.5).toString()
                     }
                     OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, true)
                     OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, true)
