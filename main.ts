@@ -6,10 +6,12 @@ enum Controlling {
 }
 
 enum Speed {
+    //% block="slow"
+    Slow,
     //% block="fast"
     Fast,
-    //% block="slow"
-    Slow
+    //% block="furious"
+    Furious,
 }
 
 
@@ -73,19 +75,65 @@ namespace games {
                         }
                         continue
                     }
-                    if (2 < parseInt(i.split(" ")[1]) && parseInt(i.split(" ")[1]) < 9) {
-                        if (!(parseInt(i.split(" ")[0]) - 10 < y && y < parseInt(i.split(" ")[0]) + 10)) {
-                            live = false
-                            if (buzzer) {
-                                pins.analogPitch(512, 100)
+                    if (speed == Speed.Slow) {
+                        if (2 < parseInt(i.split(" ")[1]) && parseInt(i.split(" ")[1]) < 9) {
+                            if (!(parseInt(i.split(" ")[0]) - 10 < y && y < parseInt(i.split(" ")[0]) + 10)) {
+                                live = false
+                                if (buzzer) {
+                                    pins.analogPitch(512, 100)
+                                }
                             }
                         }
-                    }
-                    if (speed == Speed.Slow) {
                         walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 1).toString()
                     }
                     if (speed == Speed.Fast) {
-                        walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 2).toString()
+                        if (2 < parseInt(i.split(" ")[1]) && parseInt(i.split(" ")[1]) < 9) {
+                            if (!(parseInt(i.split(" ")[0]) - 10 < y && y < parseInt(i.split(" ")[0]) + 10)) {
+                                live = false
+                                if (buzzer) {
+                                    pins.analogPitch(512, 100)
+                                }
+                            }
+                        }
+                        walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 1).toString()
+                        if (2 < parseInt(i.split(" ")[1]) && parseInt(i.split(" ")[1]) < 9) {
+                            if (!(parseInt(i.split(" ")[0]) - 10 < y && y < parseInt(i.split(" ")[0]) + 10)) {
+                                live = false
+                                if (buzzer) {
+                                    pins.analogPitch(512, 100)
+                                }
+                            }
+                        }
+                        walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 1).toString()
+                    }
+                    if (speed == Speed.Furious) {
+                        if (2 < parseInt(i.split(" ")[1]) && parseInt(i.split(" ")[1]) < 9) {
+                            if (!(parseInt(i.split(" ")[0]) - 10 < y && y < parseInt(i.split(" ")[0]) + 10)) {
+                                live = false
+                                if (buzzer) {
+                                    pins.analogPitch(512, 100)
+                                }
+                            }
+                        }
+                        walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 1).toString()
+                        if (2 < parseInt(i.split(" ")[1]) && parseInt(i.split(" ")[1]) < 9) {
+                            if (!(parseInt(i.split(" ")[0]) - 10 < y && y < parseInt(i.split(" ")[0]) + 10)) {
+                                live = false
+                                if (buzzer) {
+                                    pins.analogPitch(512, 100)
+                                }
+                            }
+                        }
+                        walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 1).toString()
+                        if (2 < parseInt(i.split(" ")[1]) && parseInt(i.split(" ")[1]) < 9) {
+                            if (!(parseInt(i.split(" ")[0]) - 10 < y && y < parseInt(i.split(" ")[0]) + 10)) {
+                                live = false
+                                if (buzzer) {
+                                    pins.analogPitch(512, 100)
+                                }
+                            }
+                        }
+                        walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 1).toString()
                     }
                     OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, true)
                     OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, true)
