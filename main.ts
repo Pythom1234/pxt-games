@@ -5,12 +5,19 @@ enum Controlling {
     Gyro
 }
 
+enum Speed {
+    //% block="fast"
+    Fast,
+    //% block="slow"
+    Slow
+}
+
 
 
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
-    //% block="Flappy Bird (buzzer $buzzer, controlling $control)"
-    export function flappyBird(buzzer: boolean, control: Controlling): void {
+    //% block="Flappy Bird (buzzer $buzzer, controlling $control, speed $speed)"
+    export function flappyBird(buzzer: boolean, control: Controlling, speed: Speed): void {
         pins.setAudioPinEnabled(true)
         let add_y = 0
         let air_time = 5
@@ -74,7 +81,7 @@ namespace games {
                             }
                         }
                     }
-                    walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 2).toString()
+                    walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - speed==Speed.Slow ? 1 : 2).toString()
                     OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, true)
                     OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, true)
                 }
