@@ -9,7 +9,7 @@ enum Controlling {
 
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
-    //% block="Flappy Bird (buzzer $buzzer, controlling $control)"
+    //% block="Flappy Bird|(buzzer $buzzer, controlling $control)"
     export function flappyBird(buzzer: boolean, control: Controlling): void {
         pins.setAudioPinEnabled(true)
         let add_y = 0
