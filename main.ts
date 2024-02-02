@@ -58,7 +58,7 @@ namespace games {
                     walls.push(randint(20, 44).toString() + " 127")
                 }
                 for (const i of walls) {
-                    if (i.split(" ")[1] == "0") {
+                    if (parseInt(i.split(" ")[1]) <= 0) {
                         walls.removeElement(i)
                         score += 1
                         if (buzzer) {
@@ -74,7 +74,7 @@ namespace games {
                             }
                         }
                     }
-                    walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 1).toString()
+                    walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 2).toString()
                     OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, true)
                     OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, true)
                 }
