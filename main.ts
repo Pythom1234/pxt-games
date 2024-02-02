@@ -53,6 +53,18 @@ namespace games {
                 OLED.clear(false)
                 OLED.drawRect(5, y, 7, y + 2, true, true)
                 OLED.text(score.toString(), 0, 0, true)
+                if (speed == Speed.Slow) {
+                    OLED.text("slow", 96, 0, true)
+                }
+                if (speed == Speed.Normal) {
+                    OLED.text("normal", 92, 0, true)
+                }
+                if (speed == Speed.Fast) {
+                    OLED.text("fast", 96, 0, true)
+                }
+                if (speed == Speed.Furious) {
+                    OLED.text("furious", 80, 0, true)
+                }
                 if (parseInt(walls[walls.length - 1].split(" ")[1]) < 100) {
                     walls.push(randint(20, 44).toString() + " 127")
                 }
