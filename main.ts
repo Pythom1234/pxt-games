@@ -53,7 +53,7 @@ namespace games {
                 OLED.clear(color)
                 OLED.drawRect(5, y, 7, y + 2, !color, true)
                 if (parseInt(walls[walls.length - 1].split(" ")[1]) < 100) {
-                    walls.push(randint(22, 42).toString() + " 127")
+                    walls.push(randint(22, 46).toString() + " 127")
                 }
                 for (const i of walls) {
                     if (parseInt(i.split(" ")[1]) <= 0) {
