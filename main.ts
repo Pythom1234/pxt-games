@@ -43,7 +43,7 @@ namespace games {
                     air_time += 1
                 }
 
-                if (y < 0 || y > 53) {
+                if (y < 11 || y > 63) {
                     live = false
                     if (buzzer) {
                         pins.analogPitch(512, 100)
