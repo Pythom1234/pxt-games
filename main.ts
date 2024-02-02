@@ -6,7 +6,15 @@ enum Speed {
     //% block="fast"
     Fast,
     //% block="furious"
-    Furious,
+    Furious
+}
+enum RenderingLevel {
+    //% block="nothing"
+    Nothing,
+    //% block="score"
+    Score,
+    //% block="score + speed"
+    ScoreSpeed
 }
 
 
@@ -14,9 +22,9 @@ enum Speed {
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
     let lastScore = 0
-    //% block="Flappy Bird (buzzer $buzzer, speed $speed, color $color)"
+    //% block="Flappy Bird (buzzer $buzzer, speed $speed, color $color, rendering level $rendernigLevel)"
     //% weight=99
-    export function flappyBird(buzzer: boolean, speed: Speed, color: boolean): void {
+    export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel): void {
         pins.setAudioPinEnabled(true)
         let play = true
         let exit = 3
@@ -87,18 +95,23 @@ namespace games {
                     OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, !color)
                     OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, !color)
                 }
-                OLED.text(score.toString(), 1, 1, !color)
-                if (speed == Speed.Slow) {
-                    OLED.text("slow", 96, 1, !color)
+                if (rendernigLevel == RenderingLevel.Score) {
+                    OLED.text(score.toString(), 1, 1, !color)
                 }
-                if (speed == Speed.Normal) {
-                    OLED.text("normal", 82, 1, !color)
-                }
-                if (speed == Speed.Fast) {
-                    OLED.text("fast", 98, 1, !color)
-                }
-                if (speed == Speed.Furious) {
-                    OLED.text("furious", 73, 1, !color)
+                if (rendernigLevel == RenderingLevel.ScoreSpeed) {
+                    OLED.text(score.toString(), 1, 1, !color)
+                    if (speed == Speed.Slow) {
+                        OLED.text("slow", 96, 1, !color)
+                    }
+                    if (speed == Speed.Normal) {
+                        OLED.text("normal", 82, 1, !color)
+                    }
+                    if (speed == Speed.Fast) {
+                        OLED.text("fast", 98, 1, !color)
+                    }
+                    if (speed == Speed.Furious) {
+                        OLED.text("furious", 73, 1, !color)
+                    }
                 }
                 OLED.draw()
             } else {
