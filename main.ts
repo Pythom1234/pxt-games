@@ -87,7 +87,8 @@ namespace games {
                     OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, !color)
                     OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, !color)
                 }
-                OLED.drawRect(0,0,127,11,color,true)
+                OLED.drawRect(0, 0, 127, 11, color, true)
+                OLED.drawLine(0, 11, 127, 11, !color)
                 OLED.text(score.toString(), 1, 1, !color)
                 if (speed == Speed.Slow) {
                     OLED.text("slow", 96, 1, !color)
