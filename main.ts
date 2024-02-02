@@ -22,7 +22,7 @@ enum RenderingLevel {
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
     let lastScore = 0
-    //% block="Flappy Bird |buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel"
+    //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel"
     //% rendernigLevel.defl=RenderingLevel.Score
     //% weight=99
     export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel): void {
