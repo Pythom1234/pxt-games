@@ -103,8 +103,8 @@ namespace games {
                 if (speed == Speed.Furious) {
                     OLED.text("furious", 73, 1, !color)
                 }
-                OLED.draw()
                 */
+                OLED.draw()
             } else {
                 OLED.clear(!color)
                 OLED.text("you lost", 32, 26, color)
