@@ -54,10 +54,10 @@ namespace games {
                 OLED.drawRect(5, y, 7, y + 2, true, true)
                 OLED.text(score.toString(), 0, 0, true)
                 if (speed == Speed.Slow) {
-                    OLED.text("slow", 99, 0, true)
+                    OLED.text("slow", 97, 0, true)
                 }
                 if (speed == Speed.Normal) {
-                    OLED.text("normal", 92, 0, true)
+                    OLED.text("normal", 85, 0, true)
                 }
                 if (speed == Speed.Fast) {
                     OLED.text("fast", 99, 0, true)
