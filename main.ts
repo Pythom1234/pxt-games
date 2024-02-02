@@ -1,6 +1,8 @@
 enum Speed {
     //% block="slow"
     Slow,
+    //% block="normal"
+    Normal,
     //% block="fast"
     Fast,
     //% block="furious"
@@ -14,7 +16,7 @@ namespace games {
     //% block="Flappy Bird (buzzer $buzzer, speed $speed)"
     export function flappyBird(buzzer: boolean, speed: Speed): void {
         pins.setAudioPinEnabled(true)
-        let play = true
+        let play = 50
         let add_y = 0
         let air_time = 5
         OLED.init()
@@ -22,7 +24,7 @@ namespace games {
         let live = true
         let walls = ["32 64"]
         let score = 0
-        while (play) {
+        while (play != 0) {
             if (live) {
                 if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
                     air_time = 0
@@ -71,17 +73,21 @@ namespace games {
                     if (speed == Speed.Slow) {
                         walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 1).toString()
                     }
-                    if (speed == Speed.Fast) {
+                    if (speed == Speed.Normal) {
                         walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 2).toString()
                     }
-                    if (speed == Speed.Furious) {
+                    if (speed == Speed.Fast) {
                         walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 3).toString()
+                    }
+                    if (speed == Speed.Furious) {
+                        walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 4).toString()
                     }
                     OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, true)
                     OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, true)
                 }
                 OLED.draw()
             } else {
+                play -= 1
                 OLED.clear(true)
                 OLED.text("you lost", 32, 26, false)
                 OLED.text("score: " + score.toString(), 32, 37, false)
