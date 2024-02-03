@@ -191,7 +191,6 @@ namespace games {
         let play = true
         let x = 62
         let live = true
-        let walls = ["32 64"]
         OLED.init()
         while (play) {
             if (live) {
@@ -211,10 +210,10 @@ namespace games {
                         x -= 2
                     }
                 }
-                if (x < 0) {
+                if (x < 2) {
                     x = 0
                 }
-                if (x > 127) {
+                if (x > 125) {
                     x = 127
                 }
                 OLED.clear(color)
