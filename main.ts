@@ -148,16 +148,31 @@ namespace games {
                     OLED.draw()
                 }
                 if (exit == -1) {
-                    if (input.buttonIsPressed(Button.A)) {
-                        play = false
-                        lastScore.push(score)
-                        OLED.clear(false)
-                        OLED.draw()
+                    if (control == Control.AB) {
+                        if (input.buttonIsPressed(Button.A)) {
+                            play = false
+                            lastScore.push(score)
+                            OLED.clear(false)
+                            OLED.draw()
+                        }
+                        if (input.buttonIsPressed(Button.B) && restart != 0) {
+                            lastScore.push(score)
+                            flappyBird(buzzer, speed, color, rendernigLevel, restart - 1, control)
+                            play = false
+                        }
                     }
-                    if (input.buttonIsPressed(Button.B) && restart != 0) {
-                        lastScore.push(score)
-                        flappyBird(buzzer, speed, color, rendernigLevel, restart - 1, control)
-                        play = false
+                    if (control == Control.ADKeyboard) {
+                        if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
+                            play = false
+                            lastScore.push(score)
+                            OLED.clear(false)
+                            OLED.draw()
+                        }
+                        if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1) && restart != 0) {
+                            lastScore.push(score)
+                            flappyBird(buzzer, speed, color, rendernigLevel, restart - 1, control)
+                            play = false
+                        }
                     }
                 }
                 if (exit > 0) {
