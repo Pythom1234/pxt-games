@@ -31,6 +31,7 @@ namespace games {
     //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel|can restart $restart|controlling $control"
     //% rendernigLevel.defl=RenderingLevel.Score
     //% weight=97
+    //% inlineInputMode="external"
     export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel, restart: number, control: Control): void {
         pins.setAudioPinEnabled(true)
         let play = true
@@ -182,6 +183,7 @@ namespace games {
     }
     //% block="Space Invaders|buzzer $buzzer|color $color|controlling $control"
     //% weight=96
+    //% inlineInputMode="external"
     export function spaceInvaders(buzzer: boolean, color: boolean, control: Control) {
         pins.setAudioPinEnabled(true)
         let play = true
