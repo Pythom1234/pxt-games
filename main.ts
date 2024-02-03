@@ -24,7 +24,7 @@ namespace games {
     let lastScore: Array<number> = []
     //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel|can restart $restart"
     //% rendernigLevel.defl=RenderingLevel.Score
-    //% weight=98
+    //% weight=97
     export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel, restart: number): void {
         pins.setAudioPinEnabled(true)
         let play = true
@@ -153,5 +153,10 @@ namespace games {
     //% weight=99
     export function getScores(): Array<number> {
         return lastScore
+    }
+    //% block="get all scores"
+    //% weight=98
+    export function delScores(): void {
+        lastScore = []
     }
 }
