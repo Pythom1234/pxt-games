@@ -154,7 +154,7 @@ namespace games {
     export function getScores(): Array<number> {
         return lastScore
     }
-    //% block="get all scores"
+    //% block="delete score list"
     //% weight=98
     export function delScores(): void {
         lastScore = []
