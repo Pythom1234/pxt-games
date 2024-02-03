@@ -16,16 +16,22 @@ enum RenderingLevel {
     //% block="score + speed"
     ScoreSpeed
 }
+enum Control {
+    //% block="buttons A/B"
+    AB,
+    //% block="ADKeyboard (pin 1)"
+    ADKeyboard
+}
 
 
 
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
     let lastScore: Array<number> = []
-    //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel|can restart $restart"
+    //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel|can restart $restart|controlling $control"
     //% rendernigLevel.defl=RenderingLevel.Score
     //% weight=97
-    export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel, restart: number): void {
+    export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel, restart: number, control: Control): void {
         pins.setAudioPinEnabled(true)
         let play = true
         let exit = 3
@@ -38,9 +44,17 @@ namespace games {
         let score = 0
         while (play) {
             if (live) {
-                if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
-                    air_time = 0
-                    add_y = 3
+                if (control == Control.AB) {
+                    if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
+                        air_time = 0
+                        add_y = 3
+                    }
+                }
+                if (control == Control.ADKeyboard) {
+                    if (ADKeyboard.adKeyboardGetPressed(AnalogPin.P1) != "") {
+                        air_time = 0
+                        add_y = 3
+                    }
                 }
                 if (add_y != 0) {
                     y += 0 - add_y
@@ -79,6 +93,16 @@ namespace games {
                             if (buzzer) {
                                 pins.analogPitch(512, 100)
                             }
+                            OLED.clear(!color)
+                            OLED.text("you lost", 25, 10, color)
+                            OLED.text("score: " + score.toString(), 25, 21, color)
+                            if (exit == 0) {
+                                OLED.text("A: continue", 25, 32, color)
+                                if (restart != 0) {
+                                    OLED.text("B: restart", 25, 43, color)
+                                }
+                            }
+                            OLED.draw()
                         }
                     }
                     if (speed == Speed.Slow) {
@@ -116,16 +140,6 @@ namespace games {
                 }
                 OLED.draw()
             } else {
-                OLED.clear(!color)
-                OLED.text("you lost", 25, 10, color)
-                OLED.text("score: " + score.toString(), 25, 21, color)
-                if (exit == 0) {
-                    OLED.text("A: continue", 25, 32, color)
-                    if (restart != 0) {
-                        OLED.text("B: restart", 25, 43, color)
-                    }
-                }
-                OLED.draw()
                 if (exit == 0) {
                     if (input.buttonIsPressed(Button.A)) {
                         play = false
@@ -135,7 +149,7 @@ namespace games {
                     }
                     if (input.buttonIsPressed(Button.B) && restart != 0) {
                         lastScore.push(score)
-                        flappyBird(buzzer, speed, color, rendernigLevel, restart - 1)
+                        flappyBird(buzzer, speed, color, rendernigLevel, restart - 1, control)
                         play = false
                     }
                 } else {
