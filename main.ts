@@ -191,7 +191,22 @@ namespace games {
         OLED.init()
         while (play) {
             if (live) {
+                if (control == Control.AB) {
+                    if (input.buttonIsPressed(Button.A)) {
+                        x -= 2
+                    }
+                    if (input.buttonIsPressed(Button.A)) {
+                        x += 2
+                    }
+                }
+                if (x < 0) {
+                    x = 0
+                }
+                if (x > 127) {
+                    x = 127
+                }
                 OLED.clear(color)
+                OLED.drawRect(x - 2, 59, x + 2, 63, !color, true)
                 OLED.draw()
             }
         }
