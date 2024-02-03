@@ -180,9 +180,22 @@ namespace games {
             }
         }
     }
-    //% block="Space Invaders"
+    //% block="Space Invaders|buzzer $buzzer|color $color|controlling $control"
     //% weight=96
-    export function spaceInvaders() {}
+    export function spaceInvaders(buzzer: boolean, color: boolean, control: Control) {
+        pins.setAudioPinEnabled(true)
+        let play = true
+        let x = 62
+        let live = true
+        let walls = ["32 64"]
+        OLED.init()
+        while (play) {
+            if (live) {
+                OLED.clear(color)
+                OLED.draw()
+            }
+        }
+    }
     //% block="get last score"
     //% weight=100
     export function getLastScore(): number {
