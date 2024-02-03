@@ -78,7 +78,7 @@ namespace games {
                 if (parseInt(walls[walls.length - 1].split(" ")[1]) < 100) {
                     walls.push(randint(20, 46).toString() + " 127")
                 }
-                for (const i of walls) {
+                for (let i of walls) {
                     if (parseInt(i.split(" ")[1]) <= 0) {
                         walls.removeElement(i)
                         score += 1
