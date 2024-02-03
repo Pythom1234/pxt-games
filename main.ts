@@ -22,10 +22,10 @@ enum RenderingLevel {
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
     let lastScore = 0
-    //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel"
+    //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel|can restart $restart"
     //% rendernigLevel.defl=RenderingLevel.Score
     //% weight=99
-    export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel): void {
+    export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel, restart: boolean): void {
         pins.setAudioPinEnabled(true)
         let play = true
         let exit = 3
@@ -52,7 +52,7 @@ namespace games {
                     air_time += 1
                 }
 
-                if (y < 11 || y > 63) {
+                if (y < 0 || y > 63) {
                     live = false
                     if (buzzer) {
                         pins.analogPitch(512, 100)
@@ -62,7 +62,7 @@ namespace games {
                 OLED.clear(color)
                 OLED.drawRect(5, y, 7, y + 2, !color, true)
                 if (parseInt(walls[walls.length - 1].split(" ")[1]) < 100) {
-                    walls.push(randint(22, 46).toString() + " 127")
+                    walls.push(randint(20, 46).toString() + " 127")
                 }
                 for (const i of walls) {
                     if (parseInt(i.split(" ")[1]) <= 0) {
@@ -117,10 +117,10 @@ namespace games {
                 OLED.draw()
             } else {
                 OLED.clear(!color)
-                OLED.text("you lost", 32, 26, color)
-                OLED.text("score: " + score.toString(), 32, 37, color)
+                OLED.text("you lost", 32, 1, color)
+                OLED.text("score: " + score.toString(), 32, 12, color)
                 if (exit == 0) {
-                    OLED.text("press A or B", 20, 48, color)
+                    OLED.text("A: continue", 32, 23, color)
                 }
                 OLED.draw()
                 if (exit == 0) {
