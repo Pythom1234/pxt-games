@@ -148,4 +148,9 @@ namespace games {
     export function getLastScore(): number {
         return lastScore[lastScore.length - 1]
     }
+    //% block="get all scores"
+    //% weight=99
+    export function getScores(): Array<number> {
+        return lastScore
+    }
 }
