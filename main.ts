@@ -105,40 +105,44 @@ namespace games {
                             OLED.draw()
                         }
                     }
-                    if (speed == Speed.Slow) {
-                        walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 1).toString()
-                    }
-                    if (speed == Speed.Normal) {
-                        walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 2).toString()
-                    }
-                    if (speed == Speed.Fast) {
-                        walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 3).toString()
-                    }
-                    if (speed == Speed.Furious) {
-                        walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 4).toString()
-                    }
-                    OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, !color)
-                    OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, !color)
-                }
-                if (rendernigLevel == RenderingLevel.Score) {
-                    OLED.text(score.toString(), 1, 1, !color)
-                }
-                if (rendernigLevel == RenderingLevel.ScoreSpeed) {
-                    OLED.text(score.toString(), 1, 1, !color)
-                    if (speed == Speed.Slow) {
-                        OLED.text("slow", 96, 1, !color)
-                    }
-                    if (speed == Speed.Normal) {
-                        OLED.text("normal", 82, 1, !color)
-                    }
-                    if (speed == Speed.Fast) {
-                        OLED.text("fast", 98, 1, !color)
-                    }
-                    if (speed == Speed.Furious) {
-                        OLED.text("furious", 73, 1, !color)
+                    if (live) {
+                        if (speed == Speed.Slow) {
+                            walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 1).toString()
+                        }
+                        if (speed == Speed.Normal) {
+                            walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 2).toString()
+                        }
+                        if (speed == Speed.Fast) {
+                            walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 3).toString()
+                        }
+                        if (speed == Speed.Furious) {
+                            walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 4).toString()
+                        }
+                        OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, !color)
+                        OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, !color)
                     }
                 }
-                OLED.draw()
+                if (live) {
+                    if (rendernigLevel == RenderingLevel.Score) {
+                        OLED.text(score.toString(), 1, 1, !color)
+                    }
+                    if (rendernigLevel == RenderingLevel.ScoreSpeed) {
+                        OLED.text(score.toString(), 1, 1, !color)
+                        if (speed == Speed.Slow) {
+                            OLED.text("slow", 96, 1, !color)
+                        }
+                        if (speed == Speed.Normal) {
+                            OLED.text("normal", 82, 1, !color)
+                        }
+                        if (speed == Speed.Fast) {
+                            OLED.text("fast", 98, 1, !color)
+                        }
+                        if (speed == Speed.Furious) {
+                            OLED.text("furious", 73, 1, !color)
+                        }
+                    }
+                    OLED.draw()
+                }
             } else {
                 if (exit == 0) {
                     if (input.buttonIsPressed(Button.A)) {
