@@ -151,6 +151,7 @@ namespace games {
     //% block="get all scores"
     //% weight=99
     export function getScores(): Array<number> {
+        console.log(lastScore)
         return lastScore
     }
 }
