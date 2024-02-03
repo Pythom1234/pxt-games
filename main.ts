@@ -180,6 +180,9 @@ namespace games {
             }
         }
     }
+    //% block="Space Invaders"
+    //% weight=96
+    export function spaceInvaders() {}
     //% block="get last score"
     //% weight=100
     export function getLastScore(): number {
