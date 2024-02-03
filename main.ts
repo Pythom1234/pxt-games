@@ -146,6 +146,6 @@ namespace games {
     //% block="get last score"
     //% weight=100
     export function getLastScore(): number {
-        return lastScore[-1]
+        return lastScore[lastScore.length - 1]
     }
 }
