@@ -78,9 +78,9 @@ namespace games {
                 if (parseInt(walls[walls.length - 1].split(" ")[1]) < 100) {
                     walls.push(randint(20, 46).toString() + " 127")
                 }
-                for (let i of walls) {
+                for (const i of walls) {
                     if (parseInt(i.split(" ")[1]) <= 0) {
-                        //walls.removeElement(i)
+                        walls.removeElement(i)
                         score += 1
                         if (buzzer) {
                             pins.analogPitch(512, 20)
