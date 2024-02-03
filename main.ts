@@ -20,7 +20,9 @@ enum Control {
     //% block="buttons A/B"
     AB,
     //% block="ADKeyboard (pin 1)"
-    ADKeyboard
+    ADKeyboard,
+    //% block="buttons B/A (reverse)"
+    ABReverse,
 }
 
 
@@ -45,7 +47,7 @@ namespace games {
         let score = 0
         while (play) {
             if (live) {
-                if (control == Control.AB) {
+                if (control == Control.AB || control == Control.ABReverse) {
                     if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
                         air_time = 0
                         add_y = 3
@@ -197,8 +199,16 @@ namespace games {
                     if (input.buttonIsPressed(Button.A)) {
                         x -= 2
                     }
+                    if (input.buttonIsPressed(Button.B)) {
+                        x += 2
+                    }
+                }
+                if (control == Control.ABReverse) {
                     if (input.buttonIsPressed(Button.A)) {
                         x += 2
+                    }
+                    if (input.buttonIsPressed(Button.B)) {
+                        x -= 2
                     }
                 }
                 if (x < 0) {
