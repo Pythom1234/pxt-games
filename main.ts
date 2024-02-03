@@ -93,16 +93,6 @@ namespace games {
                             if (buzzer) {
                                 pins.analogPitch(512, 100)
                             }
-                            OLED.clear(!color)
-                            OLED.text("you lost", 25, 10, color)
-                            OLED.text("score: " + score.toString(), 25, 21, color)
-                            if (exit == 0) {
-                                OLED.text("A: continue", 25, 32, color)
-                                if (restart != 0) {
-                                    OLED.text("B: restart", 25, 43, color)
-                                }
-                            }
-                            OLED.draw()
                         }
                     }
                     if (live) {
@@ -144,7 +134,20 @@ namespace games {
                     OLED.draw()
                 }
             } else {
-                if (exit == 0) {
+                if (exit != -1) {
+                    OLED.clear(!color)
+                    OLED.text("you lost", 25, 10, color)
+                    OLED.text("score: " + score.toString(), 25, 21, color)
+                    if (exit == 0) {
+                        OLED.text("A: continue", 25, 32, color)
+                        if (restart != 0) {
+                            OLED.text("B: restart", 25, 43, color)
+                        }
+                        exit -= 1
+                    }
+                    OLED.draw()
+                }
+                if (exit == -1) {
                     if (input.buttonIsPressed(Button.A)) {
                         play = false
                         lastScore.push(score)
@@ -156,7 +159,8 @@ namespace games {
                         flappyBird(buzzer, speed, color, rendernigLevel, restart - 1, control)
                         play = false
                     }
-                } else {
+                }
+                if (exit > 0) {
                     exit -= 1
                 }
             }
