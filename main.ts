@@ -80,7 +80,7 @@ namespace games {
                 }
                 for (let i of walls) {
                     if (parseInt(i.split(" ")[1]) <= 0) {
-                        walls.removeElement(i)
+                        //walls.removeElement(i)
                         score += 1
                         if (buzzer) {
                             pins.analogPitch(512, 20)
