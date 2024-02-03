@@ -85,7 +85,6 @@ namespace games {
                         if (buzzer) {
                             pins.analogPitch(512, 20)
                         }
-                        continue
                     }
                     if (2 < parseInt(i.split(" ")[1]) && parseInt(i.split(" ")[1]) < 7) {
                         if (!(parseInt(i.split(" ")[0]) - 10 < y && y < parseInt(i.split(" ")[0]) + 10)) {
