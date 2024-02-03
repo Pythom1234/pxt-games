@@ -25,7 +25,7 @@ namespace games {
     //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel|can restart $restart"
     //% rendernigLevel.defl=RenderingLevel.Score
     //% weight=99
-    export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel, restart: boolean): void {
+    export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel, restart: number): void {
         pins.setAudioPinEnabled(true)
         let play = true
         let exit = 3
@@ -121,7 +121,7 @@ namespace games {
                 OLED.text("score: " + score.toString(), 25, 21, color)
                 if (exit == 0) {
                     OLED.text("A: continue", 25, 32, color)
-                    if (restart) {
+                    if (restart != 0) {
                         OLED.text("B: restart", 25, 43, color)
                     }
                 }
@@ -133,8 +133,8 @@ namespace games {
                         OLED.clear(false)
                         OLED.draw()
                     }
-                    if (input.buttonIsPressed(Button.B) && restart) {
-                        flappyBird(buzzer, speed, color, rendernigLevel, restart)
+                    if (input.buttonIsPressed(Button.B) && restart != 0) {
+                        flappyBird(buzzer, speed, color, rendernigLevel, restart - 1)
                         play = false
                     }
                 } else {
