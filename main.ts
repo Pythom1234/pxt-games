@@ -21,10 +21,10 @@ enum RenderingLevel {
 
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
-    let lastScore = 0
+    let lastScore: Array<number> = []
     //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel|can restart $restart"
     //% rendernigLevel.defl=RenderingLevel.Score
-    //% weight=99
+    //% weight=98
     export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel, restart: number): void {
         pins.setAudioPinEnabled(true)
         let play = true
@@ -129,7 +129,7 @@ namespace games {
                 if (exit == 0) {
                     if (input.buttonIsPressed(Button.A)) {
                         play = false
-                        lastScore = score
+                        lastScore.push(score)
                         OLED.clear(false)
                         OLED.draw()
                     }
@@ -146,6 +146,6 @@ namespace games {
     //% block="get last score"
     //% weight=100
     export function getLastScore(): number {
-        return lastScore
+        return lastScore[-1]
     }
 }
