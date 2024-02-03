@@ -127,11 +127,15 @@ namespace games {
                 }
                 OLED.draw()
                 if (exit == 0) {
-                    if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
+                    if (input.buttonIsPressed(Button.A)) {
                         play = false
                         lastScore = score
                         OLED.clear(false)
                         OLED.draw()
+                    }
+                    if (input.buttonIsPressed(Button.B) && restart) {
+                        flappyBird(buzzer, speed, color, rendernigLevel, restart)
+                        play = false
                     }
                 } else {
                     exit -= 1
@@ -141,7 +145,7 @@ namespace games {
     }
     //% block="get last score"
     //% weight=100
-    export function getLastscore(): number {
+    export function getLastScore(): number {
         return lastScore
     }
 }
