@@ -117,10 +117,13 @@ namespace games {
                 OLED.draw()
             } else {
                 OLED.clear(!color)
-                OLED.text("you lost", 32, 1, color)
-                OLED.text("score: " + score.toString(), 32, 12, color)
+                OLED.text("you lost", 32, 10, color)
+                OLED.text("score: " + score.toString(), 32, 21, color)
                 if (exit == 0) {
-                    OLED.text("A: continue", 32, 23, color)
+                    OLED.text("A: continue", 32, 32, color)
+                    if (restart) {
+                        OLED.text("B: restart", 32, 43, color)
+                    }
                 }
                 OLED.draw()
                 if (exit == 0) {
