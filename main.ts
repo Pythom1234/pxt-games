@@ -211,10 +211,10 @@ namespace games {
                     }
                 }
                 if (x < 2) {
-                    x = 0
+                    x = 2
                 }
                 if (x > 125) {
-                    x = 127
+                    x = 125
                 }
                 OLED.clear(color)
                 OLED.drawRect(x - 2, 59, x + 2, 63, !color, true)
