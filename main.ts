@@ -38,6 +38,7 @@ namespace games {
         let play = true
         let x = 62
         let live = true
+        let enemies = []
         OLED.init()
         while (play) {
             if (live) {
