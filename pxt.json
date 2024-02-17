@@ -11,9 +11,7 @@
         "main.ts",
         "README.md"
     ],
-    "testFiles": [
-        "test.ts"
-    ],
+    "testFiles": [],
     "targetVersions": {
         "target": "6.0.25",
         "targetId": "microbit"
