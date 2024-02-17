@@ -1,5 +1,5 @@
 {
-    "name": "pxt-games",
+    "name": "games",
     "description": "",
     "dependencies": {
         "core": "*",
