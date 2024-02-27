@@ -30,54 +30,6 @@ enum Control {
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
     let lastScore: Array<number> = []
-    //% block="Space Invaders|buzzer $buzzer|color $color|controlling $control"
-    //% weight=96
-    //% inlineInputMode="external"
-    export function spaceInvaders(buzzer: boolean, color: boolean, control: Control) {
-        pins.setAudioPinEnabled(true)
-        let play = true
-        let x = 62
-        let live = true
-        let enemies = []
-        OLED.init()
-        while (play) {
-            if (live) {
-                if (control == Control.AB) {
-                    if (input.buttonIsPressed(Button.A)) {
-                        x -= 5
-                    }
-                    if (input.buttonIsPressed(Button.B)) {
-                        x += 5
-                    }
-                }
-                if (control == Control.ABReverse) {
-                    if (input.buttonIsPressed(Button.A)) {
-                        x += 5
-                    }
-                    if (input.buttonIsPressed(Button.B)) {
-                        x -= 5
-                    }
-                }
-                if (control == Control.ADKeyboard) {
-                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1) || ADKeyboard.adKeyboardIsPressed(ADKeys.E, AnalogPin.P1)) {
-                        x += 5
-                    }
-                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1) || ADKeyboard.adKeyboardIsPressed(ADKeys.C, AnalogPin.P1)) {
-                        x -= 5
-                    }
-                }
-                if (x < 2) {
-                    x = 2
-                }
-                if (x > 125) {
-                    x = 125
-                }
-                OLED.clear(color)
-                OLED.drawRect(x - 2, 59, x + 2, 63, !color, true)
-                OLED.draw()
-            }
-        }
-    }
     //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel|can restart $restart|controlling $control"
     //% rendernigLevel.defl=RenderingLevel.Score
     //% weight=97
