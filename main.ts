@@ -56,6 +56,7 @@ namespace games {
                     }
                 }
                 if (appleForward) {
+                    apples.removeAt(apples.indexOf(forward))
                     apples.push([randint(0, 63), randint(0, 31)])
                 } else {
                     positions.removeAt(0)
