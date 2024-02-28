@@ -43,7 +43,7 @@ namespace games {
         let apples: Array<Array<number>> = [[63,30]]
         OLED.init()
         while (play) {
-            if (live) {/*
+            if (live) {
                 const forward = [positions[-1][0] + directions[direction][0], positions[-1][1] + directions[direction][1]]
                 let appleForward = false
                 for (let apple of apples) {
@@ -51,7 +51,7 @@ namespace games {
                         appleForward = true
                         break
                     }
-                }
+                }/*
                 if (appleForward) {
                     apples.push([randint(0, 127), randint(0, 63)])
                 } else {
