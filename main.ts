@@ -45,13 +45,13 @@ namespace games {
         while (play) {
             if (live) {
                 const forward = [positions[-1][0] + directions[direction][0], positions[-1][1] + directions[direction][1]]
-                let appleForward = false
+                let appleForward = false/*
                 for (let apple of apples) {
                     if (apple == forward) {
                         appleForward = true
                         break
                     }
-                }/*
+                }*/
                 if (appleForward) {
                     apples.push([randint(0, 127), randint(0, 63)])
                 } else {
@@ -77,7 +77,7 @@ namespace games {
                 }
                 if (speed = Speed.Furious) {
                     basic.pause(0)
-                }*/
+                }
             } else {
                 OLED.clear(!color)
                 OLED.text("you lost", 25, 10, color)
