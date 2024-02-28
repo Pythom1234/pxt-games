@@ -59,12 +59,12 @@ namespace games {
                 }
                 positions.push(forward)
                 OLED.clear(!color)
-                for (let pos of positions) {
-                    OLED.setPx(pos[0], pos[1], color)
-                }
-                for (let apple of apples) {
-                    OLED.setPx(apple[0], apple[1], color)
-                }
+                //for (let pos of positions) {
+                //    OLED.setPx(pos[0], pos[1], color)
+                //}
+                //for (let apple of apples) {
+                //    OLED.setPx(apple[0], apple[1], color)
+                //}
                 OLED.draw()
                 if (speed = Speed.Slow) {
                     basic.pause(500)
