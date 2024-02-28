@@ -52,12 +52,12 @@ namespace games {
                         break
                     }
                 }
-                if (appleForward) {
-                    apples.push([randint(0, 127), randint(0, 63)])
-                } else {
-                    positions.removeAt(0)
-                }
-                positions.push(forward)
+                //if (appleForward) {
+                //    apples.push([randint(0, 127), randint(0, 63)])
+                //} else {
+                //    positions.removeAt(0)
+                //}
+                //positions.push(forward)
                 OLED.clear(!color)
                 for (let pos of positions) {
                     OLED.setPx(pos[0], pos[1], color)
