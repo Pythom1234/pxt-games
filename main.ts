@@ -30,23 +30,54 @@ enum Control {
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
     let lastScore: Array<number> = []
-    //% block="Snake|buzzer $buzzer|color $color|controlling $control"
+    //% block="Snake|buzzer $buzzer|speed $speed|color $color|controlling $control"
     //% weight=96
     //% inlineInputMode="external"
-    export function snake(buzzer: boolean, color: boolean, control: Control): void {
+    export function snake(buzzer: boolean, speed: Speed, color: boolean, control: Control): void {
         let play = true
         let score = 0
         let live = true
-        let positions: Array<Array<number>> = [[63, 40], [63, 41]]
-        let direction = "u"
+        let positions: Array<Array<number>> = [[63, 40], [63, 39]]
+        let direction = 0
+        let directions: Array<Array<number>> = [[0,-1],[-1,0],[0,1],[1,0]]
+        let apples: Array<Array<number>> = [[]]
         OLED.init()
         while (play) {
             if (live) {
+                const forward = [positions[-1][0] + directions[direction][0], positions[-1][1] + directions[direction][1]]
+                let appleForward = false
+                for (let apple of apples) {
+                    if (apple == forward) {
+                        appleForward = true
+                        break
+                    }
+                }
+                if (appleForward) {
+                    apples.push([randint(0, 127), randint(0, 63)])
+                } else {
+                    positions.removeAt(0)
+                }
+                positions.push(forward)
                 OLED.clear(!color)
                 for (let pos of positions) {
                     OLED.setPx(pos[0], pos[1], color)
                 }
+                for (let apple of apples) {
+                    OLED.setPx(apple[0], apple[1], color)
+                }
                 OLED.draw()
+                if (speed = Speed.Slow) {
+                    basic.pause(500)
+                }
+                if (speed = Speed.Normal) {
+                    basic.pause(100)
+                }
+                if (speed = Speed.Fast) {
+                    basic.pause(10)
+                }
+                if (speed = Speed.Furious) {
+                    basic.pause(0)
+                }
             } else {
                 OLED.clear(!color)
                 OLED.text("you lost", 25, 10, color)
