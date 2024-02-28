@@ -37,10 +37,10 @@ namespace games {
         let play = true
         let score = 0
         let live = true
-        let positions: Array<Array<number>> = [[63, 40], [63, 39]]
+        let positions: Array<Array<number>> = [[32, 20], [32, 19]]
         let direction = 0
         let directions: Array<Array<number>> = [[0, -1], [-1, 0], [0, 1], [1, 0]]
-        let apples: Array<Array<number>> = [[63, 30]]
+        let apples: Array<Array<number>> = [[32, 10]]
         OLED.init()
         while (play) {
             if (live) {
@@ -50,7 +50,7 @@ namespace games {
                 ]
                 let appleForward = false
                 for (let apple of apples) {
-                    if (apple == forward) {
+                    if (apple[0] == forward[0] && ) {
                         appleForward = true
                         break
                     }
