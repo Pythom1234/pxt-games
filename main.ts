@@ -30,6 +30,48 @@ enum Control {
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
     let lastScore: Array<number> = []
+    //% block="Snake|buzzer $buzzer|color $color|controlling $control"
+    //% weight=96
+    //% inlineInputMode="external"
+    export function snake(buzzer: boolean, color: boolean, control: Control): void {
+        let play = true
+        let score = 0
+        let live = true
+        let positions: Array<Array<number>> = [[63, 40], [63, 41]]
+        let direction = "u"
+        OLED.init()
+        while (play) {
+            if (live) {
+                OLED.clear(!color)
+                for (let pos of positions) {
+                    OLED.setPx(pos[0], pos[1], color)
+                }
+                OLED.draw()
+            } else {
+                OLED.clear(!color)
+                OLED.text("you lost", 25, 10, color)
+                OLED.text("score: " + score.toString(), 25, 21, color)
+                OLED.text("A: continue", 25, 32, color)
+                OLED.draw()
+                if (control == Control.AB) {
+                    if (input.buttonIsPressed(Button.A)) {
+                        play = false
+                        lastScore.push(score)
+                        OLED.clear(false)
+                        OLED.draw()
+                    }
+                }
+                if (control == Control.ADKeyboard) {
+                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
+                        play = false
+                        lastScore.push(score)
+                        OLED.clear(false)
+                        OLED.draw()
+                    }
+                }
+            }
+        }
+    }
     //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel|can restart $restart|controlling $control"
     //% rendernigLevel.defl=RenderingLevel.Score
     //% weight=97
