@@ -49,14 +49,16 @@ namespace games {
                     positions[positions.length - 1][1] + directions[direction][1]
                 ]
                 let appleForward = false
+                let _apple
                 for (let apple of apples) {
                     if (apple[0] == forward[0] && apple[1] == forward[1]) {
                         appleForward = true
+                        _apple = apple
                         break
                     }
                 }
                 if (appleForward) {
-                    apples.removeAt(apples.indexOf(forward))
+                    apples.removeAt(apples.indexOf(_apple))
                     apples.push([randint(0, 63), randint(0, 31)])
                 } else {
                     positions.removeAt(0)
