@@ -68,6 +68,12 @@ namespace games {
                         direction -= 1
                     }
                 }
+                if (direction == -1) {
+                    direction = 3
+                }
+                if (direction == 4) {
+                    direction = 0
+                }
                 const forward = [
                     positions[positions.length - 1][0] + directions[direction][0],
                     positions[positions.length - 1][1] + directions[direction][1]
