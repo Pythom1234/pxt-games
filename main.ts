@@ -30,17 +30,17 @@ enum Control {
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
     let lastScore: Array<number> = []
-    //% block="Snake|buzzer $buzzer|color $color|controlling $controlling"
+    //% block="Snake|buzzer $buzzer|color $color|controlling $controlling|apples $nApples"
     //% weight=96
     //% inlineInputMode="external"
-    export function snake(buzzer: boolean, color: boolean, controlling: Control): void {
+    export function snake(buzzer: boolean, color: boolean, controlling: Control, nApples: number): void {
         let play = true
         let score = 0
         let live = true
         let positions: Array<Array<number>> = [[32, 20], [32, 19]]
         let direction = 0
         let directions: Array<Array<number>> = [[0, -1], [-1, 0], [0, 1], [1, 0]]
-        let apples: Array<Array<number>> = [[32, 10]]
+        let apples: Array<Array<number>> = []
         OLED.init()
         while (play) {
             if (live) {
@@ -111,8 +111,7 @@ namespace games {
                 OLED.draw()
                 const time2 = control.millis()
                 const time = time2 - time1
-                console.log(time)
-                basic.pause(200 - time)
+                basic.pause(150 - time)
             } else {
                 OLED.clear(!color)
                 OLED.text("you lost", 25, 10, color)
