@@ -44,6 +44,30 @@ namespace games {
         OLED.init()
         while (play) {
             if (live) {
+                if (control == Control.AB) {
+                    if (input.buttonIsPressed(Button.A)) {
+                        direction += 1
+                    }
+                    if (input.buttonIsPressed(Button.B)) {
+                        direction -= 1
+                    }
+                }
+                if (control == Control.ABReverse) {
+                    if (input.buttonIsPressed(Button.A)) {
+                        direction -= 1
+                    }
+                    if (input.buttonIsPressed(Button.B)) {
+                        direction += 1
+                    }
+                }
+                if (control == Control.ADKeyboard) {
+                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P11)) {
+                        direction += 1
+                    }
+                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1)) {
+                        direction -= 1
+                    }
+                }
                 const forward = [
                     positions[positions.length - 1][0] + directions[direction][0],
                     positions[positions.length - 1][1] + directions[direction][1]
