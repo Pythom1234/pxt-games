@@ -110,7 +110,9 @@ namespace games {
                 }
                 OLED.draw()
                 const time2 = control.millis()
-                basic.pause(80 - (time2 - time1))
+                const time = time2 - time1
+                console.log(time)
+                basic.pause(100 - time)
             } else {
                 OLED.clear(!color)
                 OLED.text("you lost", 25, 10, color)
