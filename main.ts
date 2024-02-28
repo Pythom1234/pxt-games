@@ -51,10 +51,10 @@ namespace games {
                         appleForward = true
                         break
                     }
-                }/*
+                }
                 if (appleForward) {
                     apples.push([randint(0, 127), randint(0, 63)])
-                } else {
+                }/* else {
                     positions.removeAt(0)
                 }*/
                 positions.push(forward)
