@@ -57,7 +57,7 @@ namespace games {
                 } else {
                     positions.removeAt(0)
                 }
-                positions.push(forward)
+                positions.push(forward)/*
                 OLED.clear(!color)
                 for (let pos of positions) {
                     OLED.setPx(pos[0], pos[1], color)
@@ -77,7 +77,7 @@ namespace games {
                 }
                 if (speed = Speed.Furious) {
                     basic.pause(0)
-                }
+                }*/
             } else {
                 OLED.clear(!color)
                 OLED.text("you lost", 25, 10, color)
