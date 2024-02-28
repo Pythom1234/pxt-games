@@ -30,10 +30,10 @@ enum Control {
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
     let lastScore: Array<number> = []
-    //% block="Snake|buzzer $buzzer|speed $speed|color $color|controlling $control"
+    //% block="Snake|buzzer $buzzer|color $color|controlling $control"
     //% weight=96
     //% inlineInputMode="external"
-    export function snake(buzzer: boolean, speed: Speed, color: boolean, control: Control): void {
+    export function snake(buzzer: boolean, color: boolean, control: Control): void {
         let play = true
         let score = 0
         let live = true
@@ -108,18 +108,6 @@ namespace games {
                     OLED.setPx(apple[0] * 2 + 1, apple[1] * 2 + 1, !color)
                 }
                 OLED.draw()
-                if (speed = Speed.Slow) {
-                    basic.pause(500)
-                }
-                if (speed = Speed.Normal) {
-                    basic.pause(100)
-                }
-                if (speed = Speed.Fast) {
-                    basic.pause(10)
-                }
-                if (speed = Speed.Furious) {
-                    basic.pause(0)
-                }
             } else {
                 OLED.clear(!color)
                 OLED.text("you lost", 25, 10, color)
