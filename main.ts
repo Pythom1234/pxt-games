@@ -41,7 +41,7 @@ namespace games {
         let direction = 0
         let directions: Array<Array<number>> = [[0,-1],[-1,0],[0,1],[1,0]]
         let apples: Array<Array<number>> = [[63,30]]
-        OLED.init()
+        OLED.init()/*
         while (play) {
             if (live) {
                 const forward = [positions[-1][0] + directions[direction][0], positions[-1][1] + directions[direction][1]]
@@ -66,7 +66,6 @@ namespace games {
                     OLED.setPx(apple[0], apple[1], color)
                 }
                 OLED.draw()
-                /*
                 if (speed = Speed.Slow) {
                     basic.pause(500)
                 }
@@ -78,7 +77,7 @@ namespace games {
                 }
                 if (speed = Speed.Furious) {
                     basic.pause(0)
-                }*/
+                }
             } else {
                 OLED.clear(!color)
                 OLED.text("you lost", 25, 10, color)
@@ -102,7 +101,7 @@ namespace games {
                     }
                 }
             }
-        }
+        }*/
     }
     //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel|can restart $restart|controlling $control"
     //% rendernigLevel.defl=RenderingLevel.Score
