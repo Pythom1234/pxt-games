@@ -108,6 +108,7 @@ namespace games {
                     OLED.setPx(apple[0] * 2 + 1, apple[1] * 2 + 1, !color)
                 }
                 OLED.draw()
+                basic.pause(100)
             } else {
                 OLED.clear(!color)
                 OLED.text("you lost", 25, 10, color)
