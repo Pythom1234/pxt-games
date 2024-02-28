@@ -43,9 +43,9 @@ namespace games {
         let apples: Array<Array<number>> = [[63,30]]
         OLED.init()
         while (play) {
-            if (live) {/*
+            if (live) {
                 const forward = [positions[-1][0] + directions[direction][0], positions[-1][1] + directions[direction][1]]
-                let appleForward = false
+                /*let appleForward = false
                 for (let apple of apples) {
                     if (apple == forward) {
                         appleForward = true
@@ -58,12 +58,12 @@ namespace games {
                     positions.removeAt(0)
                 }
                 positions.push(forward)*/
-                OLED.clear(!color)
+                OLED.clear(color)
                 for (let pos of positions) {
-                    OLED.setPx(pos[0], pos[1], color)
+                    OLED.setPx(pos[0], pos[1], !color)
                 }
                 for (let apple of apples) {
-                    OLED.setPx(apple[0], apple[1], color)
+                    OLED.setPx(apple[0], apple[1], !color)
                 }
                 OLED.draw()
                 if (speed = Speed.Slow) {
