@@ -45,7 +45,7 @@ namespace games {
         while (play) {
             if (live) {
                 const forward = [positions[-1][0] + directions[direction][0], positions[-1][1] + directions[direction][1]]
-                let appleForward = false/*
+                let appleForward = false
                 for (let apple of apples) {
                     if (apple == forward) {
                         appleForward = true
@@ -57,7 +57,7 @@ namespace games {
                 } else {
                     positions.removeAt(0)
                 }
-                positions.push(forward)*/
+                positions.push(forward)
                 OLED.clear(!color)
                 for (let pos of positions) {
                     OLED.setPx(pos[0], pos[1], color)
