@@ -30,10 +30,10 @@ enum Control {
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
     let lastScore: Array<number> = []
-    //% block="Snake|buzzer $buzzer|color $color|controlling $control"
+    //% block="Snake|buzzer $buzzer|color $color|controlling $controlling"
     //% weight=96
     //% inlineInputMode="external"
-    export function snake(buzzer: boolean, color: boolean, control: Control): void {
+    export function snake(buzzer: boolean, color: boolean, controlling: Control): void {
         let play = true
         let score = 0
         let live = true
@@ -44,7 +44,8 @@ namespace games {
         OLED.init()
         while (play) {
             if (live) {
-                if (control == Control.AB) {
+                const time1 = control.millis()
+                if (controlling == Control.AB) {
                     if (input.buttonIsPressed(Button.A)) {
                         direction += 1
                     }
@@ -52,7 +53,7 @@ namespace games {
                         direction -= 1
                     }
                 }
-                if (control == Control.ABReverse) {
+                if (controlling == Control.ABReverse) {
                     if (input.buttonIsPressed(Button.A)) {
                         direction -= 1
                     }
@@ -60,7 +61,7 @@ namespace games {
                         direction += 1
                     }
                 }
-                if (control == Control.ADKeyboard) {
+                if (controlling == Control.ADKeyboard) {
                     if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P11)) {
                         direction += 1
                     }
@@ -108,14 +109,15 @@ namespace games {
                     OLED.setPx(apple[0] * 2 + 1, apple[1] * 2 + 1, !color)
                 }
                 OLED.draw()
-                basic.pause(100)
+                const time2 = control.millis()
+                basic.pause(50-(time2-time1))
             } else {
                 OLED.clear(!color)
                 OLED.text("you lost", 25, 10, color)
                 OLED.text("score: " + score.toString(), 25, 21, color)
                 OLED.text("A: continue", 25, 32, color)
                 OLED.draw()
-                if (control == Control.AB) {
+                if (controlling == Control.AB) {
                     if (input.buttonIsPressed(Button.A)) {
                         play = false
                         lastScore.push(score)
@@ -123,7 +125,15 @@ namespace games {
                         OLED.draw()
                     }
                 }
-                if (control == Control.ADKeyboard) {
+                if (controlling == Control.ABReverse) {
+                    if (input.buttonIsPressed(Button.A)) {
+                        play = false
+                        lastScore.push(score)
+                        OLED.clear(false)
+                        OLED.draw()
+                    }
+                }
+                if (controlling == Control.ADKeyboard) {
                     if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
                         play = false
                         lastScore.push(score)
@@ -134,11 +144,11 @@ namespace games {
             }
         }
     }
-    //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel|can restart $restart|controlling $control"
+    //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel|can restart $restart|controlling $controlling"
     //% rendernigLevel.defl=RenderingLevel.Score
     //% weight=97
     //% inlineInputMode="external"
-    export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel, restart: number, control: Control): void {
+    export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel, restart: number, controlling: Control): void {
         pins.setAudioPinEnabled(true)
         let play = true
         let exit = 3
@@ -151,13 +161,13 @@ namespace games {
         let score = 0
         while (play) {
             if (live) {
-                if (control == Control.AB || control == Control.ABReverse) {
+                if (controlling == Control.AB || controlling == Control.ABReverse) {
                     if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
                         air_time = 0
                         add_y = 3
                     }
                 }
-                if (control == Control.ADKeyboard) {
+                if (controlling == Control.ADKeyboard) {
                     if (ADKeyboard.adKeyboardGetPressed(AnalogPin.P1) != "") {
                         air_time = 0
                         add_y = 3
@@ -254,7 +264,7 @@ namespace games {
                     OLED.draw()
                 }
                 if (exit == -1) {
-                    if (control == Control.AB) {
+                    if (controlling == Control.AB) {
                         if (input.buttonIsPressed(Button.A)) {
                             play = false
                             lastScore.push(score)
@@ -263,11 +273,24 @@ namespace games {
                         }
                         if (input.buttonIsPressed(Button.B) && restart != 0) {
                             lastScore.push(score)
-                            flappyBird(buzzer, speed, color, rendernigLevel, restart - 1, control)
+                            flappyBird(buzzer, speed, color, rendernigLevel, restart - 1, controlling)
                             play = false
                         }
                     }
-                    if (control == Control.ADKeyboard) {
+                    if (controlling == Control.ABReverse) {
+                        if (input.buttonIsPressed(Button.A)) {
+                            play = false
+                            lastScore.push(score)
+                            OLED.clear(false)
+                            OLED.draw()
+                        }
+                        if (input.buttonIsPressed(Button.B) && restart != 0) {
+                            lastScore.push(score)
+                            flappyBird(buzzer, speed, color, rendernigLevel, restart - 1, controlling)
+                            play = false
+                        }
+                    }
+                    if (controlling == Control.ADKeyboard) {
                         if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
                             play = false
                             lastScore.push(score)
@@ -276,7 +299,7 @@ namespace games {
                         }
                         if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1) && restart != 0) {
                             lastScore.push(score)
-                            flappyBird(buzzer, speed, color, rendernigLevel, restart - 1, control)
+                            flappyBird(buzzer, speed, color, rendernigLevel, restart - 1, controlling)
                             play = false
                         }
                     }
