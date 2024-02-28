@@ -45,28 +45,34 @@ namespace games {
         while (play) {
             if (live) {
                 const forward = [
-                    positions[positions.length-1][0] + directions[direction][0],
-                    positions[positions.length-1][1] + directions[direction][1]
+                    positions[positions.length - 1][0] + directions[direction][0],
+                    positions[positions.length - 1][1] + directions[direction][1]
                 ]
                 let appleForward = false
                 for (let apple of apples) {
-                    if (apple[0] == forward[0] && ) {
+                    if (apple[0] == forward[0] && apple[1] == forward[1]) {
                         appleForward = true
                         break
                     }
                 }
                 if (appleForward) {
-                    apples.push([randint(0, 127), randint(0, 63)])
+                    apples.push([randint(0, 63), randint(0, 31)])
                 } else {
                     positions.removeAt(0)
                 }
                 positions.push(forward)
                 OLED.clear(color)
                 for (let pos of positions) {
-                    OLED.setPx(pos[0], pos[1], !color)
+                    OLED.setPx(pos[0] * 2, pos[1] * 2, !color)
+                    OLED.setPx(pos[0] * 2 + 1, pos[1] * 2, !color)
+                    OLED.setPx(pos[0] * 2, pos[1] * 2 + 1, !color)
+                    OLED.setPx(pos[0] * 2 + 1, pos[1] * 2 + 1, !color)
                 }
                 for (let apple of apples) {
-                    OLED.setPx(apple[0], apple[1], !color)
+                    OLED.setPx(apple[0] * 2, apple[1] * 2, !color)
+                    OLED.setPx(apple[0] * 2 + 1, apple[1] * 2, !color)
+                    OLED.setPx(apple[0] * 2, apple[1] * 2 + 1, !color)
+                    OLED.setPx(apple[0] * 2 + 1, apple[1] * 2 + 1, !color)
                 }
                 OLED.draw()
                 if (speed = Speed.Slow) {
