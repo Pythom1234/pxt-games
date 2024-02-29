@@ -117,7 +117,8 @@ namespace games {
                 }
                 positions.push(forward)
                 OLED.clear(color)
-                OLED.drawRect(0, 0, 127, 63, !color, false)
+                OLED.drawRect(0, 0, 127, 63, true, false)
+                OLED.drawRect(1, 1, 126, 62, !color, false)
                 for (let pos of positions) {
                     OLED.setPx(pos[0] * 2, pos[1] * 2, !color)
                     OLED.setPx(pos[0] * 2 + 1, pos[1] * 2, !color)
