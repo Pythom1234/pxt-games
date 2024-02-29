@@ -46,31 +46,62 @@ namespace games {
             apples.push([randint(5, 58), randint(5, 26)])
         }
         OLED.init()
+        let keyPressed = [false,false]
         while (play) {
             if (live) {
                 const time1 = control.millis()
                 if (controlling == Control.AB) {
                     if (input.buttonIsPressed(Button.A)) {
-                        direction += 1
+                        if (!keyPressed[0]) {
+                            direction += 1
+                        }
+                        keyPressed[0] = true
+                    } else {
+                        keyPressed[0] = false
                     }
                     if (input.buttonIsPressed(Button.B)) {
-                        direction -= 1
+                        if (!keyPressed[1]) {
+                            direction -= 1
+                        }
+                        keyPressed[1] = true
+                    } else {
+                        keyPressed[1] = false
                     }
                 }
                 if (controlling == Control.ABReverse) {
                     if (input.buttonIsPressed(Button.A)) {
-                        direction -= 1
+                        if (!keyPressed[0]) {
+                            direction -= 1
+                        }
+                        keyPressed[0] = true
+                    } else {
+                        keyPressed[0] = false
                     }
                     if (input.buttonIsPressed(Button.B)) {
-                        direction += 1
+                        if (!keyPressed[1]) {
+                            direction += 1
+                        }
+                        keyPressed[1] = true
+                    } else {
+                        keyPressed[1] = false
                     }
                 }
                 if (controlling == Control.ADKeyboard) {
                     if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
-                        direction += 1
+                        if (!keyPressed[0]) {
+                            direction += 1
+                        }
+                        keyPressed[0] = true
+                    } else {
+                        keyPressed[0] = false
                     }
                     if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1)) {
-                        direction -= 1
+                        if (!keyPressed[1]) {
+                            direction -= 1
+                        }
+                        keyPressed[1] = true
+                    } else {
+                        keyPressed[1] = false
                     }
                 }
                 if (direction == -1) {
@@ -134,7 +165,7 @@ namespace games {
                 OLED.draw()
                 const time2 = control.millis()
                 const time = time2 - time1
-                basic.pause(200 - time)
+                basic.pause(100 - time)
             } else {
                 OLED.clear(!color)
                 OLED.text("you lost", 25, 10, color)
