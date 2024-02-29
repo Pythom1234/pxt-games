@@ -49,36 +49,38 @@ namespace games {
         while (play) {
             if (live) {
                 const time1 = control.millis()
-                if (controlling == Control.AB) {
-                    if (input.buttonIsPressed(Button.A)) {
-                        direction += 1
+                control.inBackground(function () {
+                    if (controlling == Control.AB) {
+                        if (input.buttonIsPressed(Button.A)) {
+                            direction += 1
+                        }
+                        if (input.buttonIsPressed(Button.B)) {
+                            direction -= 1
+                        }
                     }
-                    if (input.buttonIsPressed(Button.B)) {
-                        direction -= 1
+                    if (controlling == Control.ABReverse) {
+                        if (input.buttonIsPressed(Button.A)) {
+                            direction -= 1
+                        }
+                        if (input.buttonIsPressed(Button.B)) {
+                            direction += 1
+                        }
                     }
-                }
-                if (controlling == Control.ABReverse) {
-                    if (input.buttonIsPressed(Button.A)) {
-                        direction -= 1
+                    if (controlling == Control.ADKeyboard) {
+                        if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
+                            direction += 1
+                        }
+                        if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1)) {
+                            direction -= 1
+                        }
                     }
-                    if (input.buttonIsPressed(Button.B)) {
-                        direction += 1
+                    if (direction == -1) {
+                        direction = 3
                     }
-                }
-                if (controlling == Control.ADKeyboard) {
-                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
-                        direction += 1
+                    if (direction == 4) {
+                        direction = 0
                     }
-                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1)) {
-                        direction -= 1
-                    }
-                }
-                if (direction == -1) {
-                    direction = 3
-                }
-                if (direction == 4) {
-                    direction = 0
-                }
+                })
                 const forward = [
                     positions[positions.length - 1][0] + directions[direction][0],
                     positions[positions.length - 1][1] + directions[direction][1]
