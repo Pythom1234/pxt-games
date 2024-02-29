@@ -65,7 +65,7 @@ namespace games {
                     }
                 }
                 if (controlling == Control.ADKeyboard) {
-                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P11)) {
+                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
                         direction += 1
                     }
                     if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1)) {
