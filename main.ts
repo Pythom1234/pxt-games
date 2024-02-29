@@ -90,7 +90,7 @@ namespace games {
                 }
                 if (appleForward) {
                     apples.removeAt(apples.indexOf(_apple))
-                    apples.push([randint(0, 63), randint(0, 31)])
+                    apples.push([randint(5, 58), randint(5, 26)])
                 } else {
                     positions.removeAt(0)
                 }
