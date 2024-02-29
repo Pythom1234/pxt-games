@@ -106,7 +106,7 @@ namespace games {
                     OLED.setPx(pos[0] * 2 + 1, pos[1] * 2 + 1, !color)
                 }
                 for (let apple of apples) {
-                    OLED.setPx(apple[0] * 2, apple[1] * 2, !color)
+                    //OLED.setPx(apple[0] * 2, apple[1] * 2, !color)
                     OLED.setPx(apple[0] * 2 + 1, apple[1] * 2, !color)
                     OLED.setPx(apple[0] * 2, apple[1] * 2 + 1, !color)
                     OLED.setPx(apple[0] * 2 + 1, apple[1] * 2 + 1, !color)
@@ -114,7 +114,7 @@ namespace games {
                 OLED.draw()
                 const time2 = control.millis()
                 const time = time2 - time1
-                basic.pause(180 - time)
+                basic.pause(200 - time)
             } else {
                 OLED.clear(!color)
                 OLED.text("you lost", 25, 10, color)
