@@ -90,7 +90,7 @@ namespace games {
                         break
                     }
                 }
-                if (forward[0] == 0 || forward[1] == 0 || forward[0] == 128 || forward[1] == 64 || snakeForward) {
+                if (forward[0] == 0 || forward[1] == 0 || forward[0] == 64 || forward[1] == 32 || snakeForward) {
                     live = false
                     if (buzzer) {
                         pins.analogPitch(512, 100)
