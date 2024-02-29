@@ -46,45 +46,39 @@ namespace games {
             apples.push([randint(5, 58), randint(5, 26)])
         }
         OLED.init()
-        control.inBackground(function () {
-            while (play) {
-                if (live) {
-                    if (controlling == Control.AB) {
-                        if (input.buttonIsPressed(Button.A)) {
-                            direction += 1
-                        }
-                        if (input.buttonIsPressed(Button.B)) {
-                            direction -= 1
-                        }
-                    }
-                    if (controlling == Control.ABReverse) {
-                        if (input.buttonIsPressed(Button.A)) {
-                            direction -= 1
-                        }
-                        if (input.buttonIsPressed(Button.B)) {
-                            direction += 1
-                        }
-                    }
-                    if (controlling == Control.ADKeyboard) {
-                        if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
-                            direction += 1
-                        }
-                        if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1)) {
-                            direction -= 1
-                        }
-                    }
-                    if (direction == -1) {
-                        direction = 3
-                    }
-                    if (direction == 4) {
-                        direction = 0
-                    }
-                }
-            }
-        })
         while (play) {
             if (live) {
                 const time1 = control.millis()
+                if (controlling == Control.AB) {
+                    if (input.buttonIsPressed(Button.A)) {
+                        direction += 1
+                    }
+                    if (input.buttonIsPressed(Button.B)) {
+                        direction -= 1
+                    }
+                }
+                if (controlling == Control.ABReverse) {
+                    if (input.buttonIsPressed(Button.A)) {
+                        direction -= 1
+                    }
+                    if (input.buttonIsPressed(Button.B)) {
+                        direction += 1
+                    }
+                }
+                if (controlling == Control.ADKeyboard) {
+                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
+                        direction += 1
+                    }
+                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1)) {
+                        direction -= 1
+                    }
+                }
+                if (direction == -1) {
+                    direction = 3
+                }
+                if (direction == 4) {
+                    direction = 0
+                }
                 const forward = [
                     positions[positions.length - 1][0] + directions[direction][0],
                     positions[positions.length - 1][1] + directions[direction][1]
