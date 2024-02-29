@@ -34,10 +34,11 @@ namespace games {
     //% weight=96
     //% inlineInputMode="external"
     export function snake(buzzer: boolean, color: boolean, controlling: Control, nApples: number): void {
+        pins.setAudioPinEnabled(true)
         let play = true
         let score = 0
         let live = true
-        let positions: Array<Array<number>> = [[32, 20], [32, 19]]
+        let positions: Array<Array<number>> = [[32, 20], [32, 19], [32, 18]]
         let direction = 0
         let directions: Array<Array<number>> = [[0, -1], [-1, 0], [0, 1], [1, 0]]
         let apples: Array<Array<number>> = []
@@ -82,6 +83,19 @@ namespace games {
                     positions[positions.length - 1][0] + directions[direction][0],
                     positions[positions.length - 1][1] + directions[direction][1]
                 ]
+                let snakeForward = false
+                for (let pos of positions) {
+                    if (pos[0] == forward[0] && pos[1] == forward[1]) {
+                        snakeForward = true
+                        break
+                    }
+                }
+                if (forward[0] == 0 || forward[1] == 0 || forward[0] == 128 || forward[1] == 64 || snakeForward) {
+                    live = false
+                    if (buzzer) {
+                        pins.analogPitch(512, 100)
+                    }
+                }
                 let appleForward = false
                 let _apple
                 for (let apple of apples) {
@@ -92,6 +106,10 @@ namespace games {
                     }
                 }
                 if (appleForward) {
+                    if (buzzer) {
+                        pins.analogPitch(512, 20)
+                    }
+                    score += 1
                     apples.removeAt(apples.indexOf(_apple))
                     apples.push([randint(5, 58), randint(5, 26)])
                 } else {
