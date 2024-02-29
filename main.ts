@@ -41,6 +41,9 @@ namespace games {
         let direction = 0
         let directions: Array<Array<number>> = [[0, -1], [-1, 0], [0, 1], [1, 0]]
         let apples: Array<Array<number>> = []
+        for (let i = 0; i < nApples + 1; i++) {
+            apples.push([randint(5, 58), randint(5, 26)])
+        }
         OLED.init()
         while (play) {
             if (live) {
