@@ -46,8 +46,9 @@ namespace games {
             apples.push([randint(5, 58), randint(5, 26)])
         }
         OLED.init()
-        basic.forever(function () {
+        while (play) {
             if (live) {
+                const time1 = control.millis()
                 if (controlling == Control.AB) {
                     if (input.buttonIsPressed(Button.A)) {
                         direction += 1
@@ -78,11 +79,6 @@ namespace games {
                 if (direction == 4) {
                     direction = 0
                 }
-            }
-        })
-        while (play) {
-            if (live) {
-                const time1 = control.millis()
                 const forward = [
                     positions[positions.length - 1][0] + directions[direction][0],
                     positions[positions.length - 1][1] + directions[direction][1]
