@@ -387,6 +387,7 @@ namespace games {
         let select = 0
         const games = ["Flappy Bird", "Snake"]
         let keyPressed = [false, false]
+        let selected = false
         OLED.init()
         while (true) {
             if (controlling == Control.AB) {
@@ -406,6 +407,9 @@ namespace games {
                 } else {
                     keyPressed[1] = false
                 }
+                if (input.buttonIsPressed(Button.A) && input.buttonIsPressed(Button.B)) {
+                    selected = true
+                }
             }
             if (controlling == Control.ABReverse) {
                 if (input.buttonIsPressed(Button.A)) {
@@ -424,9 +428,12 @@ namespace games {
                 } else {
                     keyPressed[1] = false
                 }
+                if (input.buttonIsPressed(Button.A) && input.buttonIsPressed(Button.B)) {
+                    selected = true
+                }
             }
             if (controlling == Control.ADKeyboard) {
-                if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
+                if (ADKeyboard.adKeyboardIsPressed(ADKeys.C, AnalogPin.P1)) {
                     if (!keyPressed[0]) {
                         select += 1
                     }
@@ -434,7 +441,7 @@ namespace games {
                 } else {
                     keyPressed[0] = false
                 }
-                if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1)) {
+                if (ADKeyboard.adKeyboardIsPressed(ADKeys.E, AnalogPin.P1)) {
                     if (!keyPressed[1]) {
                         select -= 1
                     }
@@ -442,6 +449,12 @@ namespace games {
                 } else {
                     keyPressed[1] = false
                 }
+                if (ADKeyboard.adKeyboardIsPressed(ADKeys.D, AnalogPin.P1)) {
+                    selected = true
+                }
+            }
+            if (selected) {
+                
             }
             if (select > games.length - 1) {
                 select = 0
