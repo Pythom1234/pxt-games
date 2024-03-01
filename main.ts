@@ -31,7 +31,7 @@ enum Control {
 namespace games {
     let lastScore: Array<number> = []
     //% block="Snake|buzzer $buzzer|color $color|controlling $controlling|apples $nApples"
-    //% weight=96
+    //% weight=95
     //% inlineInputMode="external"
     export function snake(buzzer: boolean, color: boolean, controlling: Control, nApples: number): void {
         pins.setAudioPinEnabled(true)
@@ -46,7 +46,7 @@ namespace games {
             apples.push([randint(5, 58), randint(5, 26)])
         }
         OLED.init()
-        let keyPressed = [false,false]
+        let keyPressed = [false, false]
         while (play) {
             if (live) {
                 const time1 = control.millis()
@@ -201,7 +201,7 @@ namespace games {
     }
     //% block="Flappy Bird|buzzer $buzzer|speed $speed|color $color|rendering level $rendernigLevel|can restart $restart|controlling $controlling"
     //% rendernigLevel.defl=RenderingLevel.Score
-    //% weight=97
+    //% weight=96
     //% inlineInputMode="external"
     export function flappyBird(buzzer: boolean, speed: Speed, color: boolean, rendernigLevel: RenderingLevel, restart: number, controlling: Control): void {
         pins.setAudioPinEnabled(true)
@@ -379,5 +379,79 @@ namespace games {
     //% weight=98
     export function delScores(): void {
         lastScore = []
+    }
+    //% block="game select|controlling $controlling"
+    //% inlineInputMode="external"
+    //% weight=97
+    export function gameSelect(controlling: Control): void {
+        let select = 0
+        const games = ["Flappy Bird", "Snake"]
+        let keyPressed = [false, false]
+        OLED.init()
+        while (true) {
+            if (controlling == Control.AB) {
+                if (input.buttonIsPressed(Button.A)) {
+                    if (!keyPressed[0]) {
+                        select += 1
+                    }
+                    keyPressed[0] = true
+                } else {
+                    keyPressed[0] = false
+                }
+                if (input.buttonIsPressed(Button.B)) {
+                    if (!keyPressed[1]) {
+                        select -= 1
+                    }
+                    keyPressed[1] = true
+                } else {
+                    keyPressed[1] = false
+                }
+            }
+            if (controlling == Control.ABReverse) {
+                if (input.buttonIsPressed(Button.A)) {
+                    if (!keyPressed[0]) {
+                        select -= 1
+                    }
+                    keyPressed[0] = true
+                } else {
+                    keyPressed[0] = false
+                }
+                if (input.buttonIsPressed(Button.B)) {
+                    if (!keyPressed[1]) {
+                        select += 1
+                    }
+                    keyPressed[1] = true
+                } else {
+                    keyPressed[1] = false
+                }
+            }
+            if (controlling == Control.ADKeyboard) {
+                if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
+                    if (!keyPressed[0]) {
+                        select += 1
+                    }
+                    keyPressed[0] = true
+                } else {
+                    keyPressed[0] = false
+                }
+                if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1)) {
+                    if (!keyPressed[1]) {
+                        select -= 1
+                    }
+                    keyPressed[1] = true
+                } else {
+                    keyPressed[1] = false
+                }
+            }
+            if (select > games.length - 1) {
+                select = 0
+            }
+            if (select < 0) {
+                select = games.length - 1
+            }
+            OLED.clear(false)
+            OLED.text(games[select],0,0,true)
+            OLED.draw()
+        }
     }
 }
