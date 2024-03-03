@@ -454,7 +454,13 @@ namespace games {
                 }
             }
             if (selected) {
-                
+                const game = games[select]
+                if (game == "Snake") {
+                    snake(false, false, controlling, 5)
+                }
+                if (game == "Flappy Bird") {
+                    flappyBird(false,Speed.Furious,false,RenderingLevel.Score,100,controlling)
+                }
             }
             if (select > games.length - 1) {
                 select = 0
@@ -463,7 +469,7 @@ namespace games {
                 select = games.length - 1
             }
             OLED.clear(false)
-            OLED.text(games[select],0,0,true)
+            OLED.text(games[select], 0, 0, true)
             OLED.draw()
         }
     }
