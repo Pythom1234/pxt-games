@@ -461,6 +461,7 @@ namespace games {
                 if (game == "Flappy Bird") {
                     flappyBird(false,Speed.Furious,false,RenderingLevel.Score,100,controlling)
                 }
+                selected = false
             }
             if (select > games.length - 1) {
                 select = 0
