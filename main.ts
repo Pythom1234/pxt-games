@@ -30,6 +30,63 @@ enum Control {
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
     let lastScore: Array<number> = []
+    //% block="catch apples|buzzer $buzzer|color $color|controlling $controlling|apples $nApples"
+    //% weight=94
+    //% inlineInputMode="external"
+    export function catchApples(buzzer: boolean, color: boolean, controlling: Control, nApples: number) {
+        pins.setAudioPinEnabled(true)
+        let play = true
+        let live = true
+        let score = 0
+        let apples: number[][] = []
+        for (let i = 0; i < nApples; i++) {
+            apples.push([randint(0, 127), 0])
+        }
+        let x = 63
+        while (play) {
+            if (live) {
+                OLED.clear(color)
+                OLED.drawImage(images.createImage(`
+. . . . .
+. . . . .
+. . . . .
+# . . . #
+. # # # .
+`), x + 2, 59, true, false)
+                OLED.draw()
+            } else {
+                OLED.clear(!color)
+                OLED.text("you lost", 25, 10, color)
+                OLED.text("score: " + score.toString(), 25, 21, color)
+                OLED.text("A: continue", 25, 32, color)
+                OLED.draw()
+                if (controlling == Control.AB) {
+                    if (input.buttonIsPressed(Button.A)) {
+                        play = false
+                        lastScore.push(score)
+                        OLED.clear(false)
+                        OLED.draw()
+                    }
+                }
+                if (controlling == Control.ABReverse) {
+                    if (input.buttonIsPressed(Button.A)) {
+                        play = false
+                        lastScore.push(score)
+                        OLED.clear(false)
+                        OLED.draw()
+                    }
+                }
+                if (controlling == Control.ADKeyboard) {
+                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
+                        play = false
+                        lastScore.push(score)
+                        OLED.clear(false)
+                        OLED.draw()
+                    }
+                }
+            }
+        }
+    }
     //% block="Snake|buzzer $buzzer|color $color|controlling $controlling|apples $nApples"
     //% weight=95
     //% inlineInputMode="external"
@@ -459,7 +516,7 @@ namespace games {
                     snake(false, false, controlling, 5)
                 }
                 if (game == "Flappy Bird") {
-                    flappyBird(false,Speed.Furious,false,RenderingLevel.Score,100,controlling)
+                    flappyBird(false, Speed.Furious, false, RenderingLevel.Score, 100, controlling)
                 }
                 selected = false
             }
