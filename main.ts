@@ -45,12 +45,48 @@ namespace games {
         let x = 63
         while (play) {
             if (live) {
+                if (controlling == Control.AB) {
+                    if (input.buttonIsPressed(Button.A)) {
+                        x -= 3
+                    }
+                    if (input.buttonIsPressed(Button.B)) {
+                        x += 3
+                    }
+                }
+                if (controlling == Control.ABReverse) {
+                    if (input.buttonIsPressed(Button.A)) {
+                        x += 3
+                    }
+                    if (input.buttonIsPressed(Button.B)) {
+                        x -= 3
+                    }
+                }
+                if (controlling == Control.ADKeyboard) {
+                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
+                        x -= 3
+                    }
+                    if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1)) {
+                        x += 3
+                    }
+                }
+                x = Math.constrain(x, 5, 122)
                 OLED.clear(color)
+                for (let apple of apples) {
+                    apples[apples.indexOf(apple)][1] += 3
+                    OLED.drawImage(images.createImage(`
+                    . . . # .
+                    . . # . .
+                    . # # # .
+                    # # # # #
+                    # # # # #
+                    . # # # .
+                    `), apple[0] - 2, apple[1], !color, false)
+                }
                 OLED.drawImage(images.createImage(`
-                ##......##
-                .##....##.
-                ..######..
-                `), x + 5, 61, true, false)
+                # # . . . . . . # #
+                . # # . . . . # # .
+                . . # # # # # # . .
+                `), x - 5, 61, !color, false)
                 OLED.draw()
             } else {
                 OLED.clear(!color)
