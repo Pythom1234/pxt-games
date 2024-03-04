@@ -47,12 +47,10 @@ namespace games {
             if (live) {
                 OLED.clear(color)
                 OLED.drawImage(images.createImage(`
-. . . . .
-. . . . .
-. . . . .
-# . . . #
-. # # # .
-`), x + 2, 59, true, false)
+                ##......##
+                .##....##.
+                ..######..
+                `), x + 5, 61, true, false)
                 OLED.draw()
             } else {
                 OLED.clear(!color)
