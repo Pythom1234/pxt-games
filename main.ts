@@ -80,6 +80,7 @@ namespace games {
                     # # # # #
                     # # # # #
                     . # # # .
+                    . . . . .
                     `), apple[0] - 2, apple[1], !color, false)
                 }
                 OLED.drawImage(images.createImage(`
