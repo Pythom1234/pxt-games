@@ -74,6 +74,7 @@ namespace games {
                 for (let apple of apples) {
                     apples[apples.indexOf(apple)][1] += 3
                     OLED.drawImage(images.createImage(`
+                    . . . # .
                     . . # . .
                     . # # # .
                     # # # # #
