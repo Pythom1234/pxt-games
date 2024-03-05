@@ -495,7 +495,7 @@ namespace games {
     //% weight=97
     export function gameSelect(controlling: Control): void {
         let select = 0
-        const games = ["Flappy Bird", "Snake"]
+        const games = ["Flappy Bird", "Snake", "catch the apples"]
         let keyPressed = [false, false]
         let selected = false
         OLED.init()
@@ -570,6 +570,9 @@ namespace games {
                 }
                 if (game == "Flappy Bird") {
                     flappyBird(false, Speed.Furious, false, RenderingLevel.Score, 100, controlling)
+                }
+                if (game == "catch the apples") {
+                    catchApples(false,false,controlling,3)
                 }
                 selected = false
             }
