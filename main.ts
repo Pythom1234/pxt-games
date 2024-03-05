@@ -30,21 +30,19 @@ enum Control {
 //% icon="\uf11b" color="#ff5f00"
 namespace games {
     let lastScore: Array<number> = []
-    //% block="catch apples|buzzer $buzzer|color $color|controlling $controlling|apples $nApples|lives $nLives"
+    //% block="catch apples|buzzer $buzzer|color $color|controlling $controlling|lives $nLives"
     //% weight=94
     //% nLives.defl=3
     //% inlineInputMode="external"
-    export function catchApples(buzzer: boolean, color: boolean, controlling: Control, nApples: number, nLives: number) {
+    export function catchApples(buzzer: boolean, color: boolean, controlling: Control, nLives: number) {
         pins.setAudioPinEnabled(true)
         let play = true
         let lives = nLives
         let score = 0
         let apples: number[][] = []
-        for (let i = 0; i < nApples; i++) {
-            apples.push([randint(0, 127), 0])
-        }
+        apples.push([randint(0, 127), 0])
         let x = 63
-        const playerSpeed = 5
+        const playerSpeed = 10
         while (play) {
             if (lives > 0) {
                 if (controlling == Control.AB) {
