@@ -40,7 +40,7 @@ namespace games {
         let lives = nLives
         let score = 0
         let apples: number[][] = []
-        apples.push([randint(0, 127), 0])
+        apples.push([randint(10, 117), 0])
         let x = 63
         const playerSpeed = 10
         while (play) {
@@ -86,7 +86,7 @@ namespace games {
                                 pins.analogPitch(512, 100)
                             }
                         }
-                        apples.push([randint(0, 127), 0])
+                        apples.push([randint(10, 117), 0])
                     }
                 }
                 OLED.clear(color)
