@@ -44,30 +44,31 @@ namespace games {
             apples.push([randint(0, 127), 0])
         }
         let x = 63
+        const playerSpeed = 5
         while (play) {
             if (lives > 0) {
                 if (controlling == Control.AB) {
                     if (input.buttonIsPressed(Button.A)) {
-                        x -= 3
+                        x -= playerSpeed
                     }
                     if (input.buttonIsPressed(Button.B)) {
-                        x += 3
+                        x += playerSpeed
                     }
                 }
                 if (controlling == Control.ABReverse) {
                     if (input.buttonIsPressed(Button.A)) {
-                        x += 3
+                        x += playerSpeed
                     }
                     if (input.buttonIsPressed(Button.B)) {
-                        x -= 3
+                        x -= playerSpeed
                     }
                 }
                 if (controlling == Control.ADKeyboard) {
                     if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
-                        x -= 3
+                        x -= playerSpeed
                     }
                     if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1)) {
-                        x += 3
+                        x += playerSpeed
                     }
                 }
                 x = Math.constrain(x, 5, 122)
