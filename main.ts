@@ -87,6 +87,7 @@ namespace games {
                                 pins.analogPitch(512, 100)
                             }
                         }
+                        apples.push([randint(0, 127), 0])
                     }
                 }
                 OLED.clear(color)
