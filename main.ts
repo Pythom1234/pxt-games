@@ -71,9 +71,26 @@ namespace games {
                     }
                 }
                 x = Math.constrain(x, 5, 122)
-                OLED.clear(color)
                 for (let apple of apples) {
                     apples[apples.indexOf(apple)][1] += 3
+                }
+                for (let apple of apples) {
+                    if (apple[1] == 57) {
+                        if (apple[0] > x - 5 && apple[0] < x + 5) {
+                            score += 1
+                            if (buzzer) {
+                                pins.analogPitch(512, 20)
+                            }
+                        } else {
+                            lives -= 1
+                            if (buzzer) {
+                                pins.analogPitch(512, 100)
+                            }
+                        }
+                    }
+                }
+                OLED.clear(color)
+                for (let apple of apples) {
                     OLED.drawImage(images.createImage(`
                     . . . # .
                     . . # . .
@@ -88,6 +105,7 @@ namespace games {
                 . # # . . . . # # .
                 . . # # # # # # . .
                 `), x - 5, 61, !color, false)
+                OLED.text("lives: "+lives.toString(),0,0,true)
                 OLED.draw()
             } else {
                 OLED.clear(!color)
