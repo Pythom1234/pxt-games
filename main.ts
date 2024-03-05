@@ -105,7 +105,8 @@ namespace games {
                 ##########
                 ##########
                 `), x - 5, 61, !color, false)
-                OLED.text("lives: "+lives.toString(),0,0,true)
+                OLED.text("lives: " + lives.toString(), 0, 0, !color)
+                OLED.text("score: " + score.toString(), 11, 0, !color)
                 OLED.draw()
             } else {
                 OLED.clear(!color)
