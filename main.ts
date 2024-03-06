@@ -101,9 +101,9 @@ namespace games {
                     `), apple[0] - 2, apple[1], !color, false)
                 }
                 OLED.drawImage(images.createImage(`
-                ##########
-                ##########
-                ##########
+                # # # # # # # # # #
+                # # # # # # # # # #
+                # # # # # # # # # #
                 `), x - 5, 61, !color, false)
                 OLED.text("lives: " + lives.toString(), 0, 0, !color)
                 OLED.text("score: " + score.toString(), 0, 11, !color)
