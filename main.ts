@@ -98,21 +98,21 @@ namespace games {
                     # # # # #
                     # # # # #
                     . # # # .
-                    `), apple[0] - 2, apple[1], !color, false)
+                    `), apple[0] - 2, apple[1], !color, false, false)
                 }
                 OLED.drawImage(images.createImage(`
                 # # # # # # # # # #
                 # # # # # # # # # #
                 # # # # # # # # # #
-                `), x - 5, 61, !color, false)
-                OLED.text("lives: " + lives.toString(), 0, 0, !color)
-                OLED.text("score: " + score.toString(), 0, 11, !color)
+                `), x - 5, 61, !color, false, false)
+                OLED.drawText("lives: " + lives.toString(), 0, 0, !color, false)
+                OLED.drawText("score: " + score.toString(), 0, 11, !color, false)
                 OLED.draw()
             } else {
                 OLED.clear(!color)
-                OLED.text("you lost", 25, 10, color)
-                OLED.text("score: " + score.toString(), 25, 21, color)
-                OLED.text("A: continue", 25, 32, color)
+                OLED.drawText("you lost", 25, 10, color, false)
+                OLED.drawText("score: " + score.toString(), 25, 21, color, false)
+                OLED.drawText("A: continue", 25, 32, color, false)
                 OLED.draw()
                 if (controlling == Control.AB) {
                     if (input.buttonIsPressed(Button.A)) {
@@ -259,8 +259,8 @@ namespace games {
                 }
                 positions.push(forward)
                 OLED.clear(color)
-                OLED.drawRect(0, 0, 127, 63, true, false)
-                OLED.drawRect(1, 1, 126, 62, !color, false)
+                OLED.drawRect(0, 0, 127, 63, true, false, false)
+                OLED.drawRect(1, 1, 126, 62, !color, false, false)
                 for (let pos of positions) {
                     OLED.setPx(pos[0] * 2, pos[1] * 2, !color)
                     OLED.setPx(pos[0] * 2 + 1, pos[1] * 2, !color)
@@ -279,9 +279,9 @@ namespace games {
                 basic.pause(100 - time)
             } else {
                 OLED.clear(!color)
-                OLED.text("you lost", 25, 10, color)
-                OLED.text("score: " + score.toString(), 25, 21, color)
-                OLED.text("A: continue", 25, 32, color)
+                OLED.drawText("you lost", 25, 10, color, false)
+                OLED.drawText("score: " + score.toString(), 25, 21, color, false)
+                OLED.drawText("A: continue", 25, 32, color, false)
                 OLED.draw()
                 if (controlling == Control.AB) {
                     if (input.buttonIsPressed(Button.A)) {
@@ -357,7 +357,7 @@ namespace games {
                 }
 
                 OLED.clear(color)
-                OLED.drawRect(5, y, 7, y + 2, !color, true)
+                OLED.drawRect(5, y, 7, y + 2, !color, true, false)
                 if (parseInt(walls[walls.length - 1].split(" ")[1]) < 100) {
                     walls.push(randint(20, 46).toString() + " 127")
                 }
@@ -390,27 +390,27 @@ namespace games {
                         if (speed == Speed.Furious) {
                             walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 4).toString()
                         }
-                        OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, !color)
-                        OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, !color)
+                        OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, !color, false)
+                        OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, !color, false)
                     }
                 }
                 if (live) {
                     if (rendernigLevel == RenderingLevel.Score) {
-                        OLED.text(score.toString(), 1, 1, !color)
+                        OLED.drawText(score.toString(), 1, 1, !color, false)
                     }
                     if (rendernigLevel == RenderingLevel.ScoreSpeed) {
-                        OLED.text(score.toString(), 1, 1, !color)
+                        OLED.drawText(score.toString(), 1, 1, !color, false)
                         if (speed == Speed.Slow) {
-                            OLED.text("slow", 96, 1, !color)
+                            OLED.drawText("slow", 96, 1, !color, false)
                         }
                         if (speed == Speed.Normal) {
-                            OLED.text("normal", 82, 1, !color)
+                            OLED.drawText("normal", 82, 1, !color, false)
                         }
                         if (speed == Speed.Fast) {
-                            OLED.text("fast", 98, 1, !color)
+                            OLED.drawText("fast", 98, 1, !color, false)
                         }
                         if (speed == Speed.Furious) {
-                            OLED.text("furious", 73, 1, !color)
+                            OLED.drawText("furious", 73, 1, !color, false)
                         }
                     }
                     OLED.draw()
@@ -418,12 +418,12 @@ namespace games {
             } else {
                 if (exit != -1) {
                     OLED.clear(!color)
-                    OLED.text("you lost", 25, 10, color)
-                    OLED.text("score: " + score.toString(), 25, 21, color)
+                    OLED.drawText("you lost", 25, 10, color, false)
+                    OLED.drawText("score: " + score.toString(), 25, 21, color, false)
                     if (exit == 0) {
-                        OLED.text("A: continue", 25, 32, color)
+                        OLED.drawText("A: continue", 25, 32, color, false)
                         if (restart != 0) {
-                            OLED.text("B: restart", 25, 43, color)
+                            OLED.drawText("B: restart", 25, 43, color, false)
                         }
                         exit -= 1
                     }
@@ -584,7 +584,7 @@ namespace games {
                 select = games.length - 1
             }
             OLED.clear(false)
-            OLED.text(games[select], 0, 0, true)
+            OLED.drawText(games[select], 0, 0, true, false)
             OLED.draw()
         }
     }
