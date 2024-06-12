@@ -89,9 +89,9 @@ namespace games {
                         apples.push([randint(10, 117), 0])
                     }
                 }
-                OLED.clear(color)
+                oled.clear(color)
                 for (let apple of apples) {
-                    OLED.drawImage(images.createImage(`
+                    oled.drawImage(images.createImage(`
                     . . . # .
                     . . # . .
                     . # # # .
@@ -100,42 +100,42 @@ namespace games {
                     . # # # .
                     `), apple[0] - 2, apple[1], !color, false, false)
                 }
-                OLED.drawImage(images.createImage(`
+                oled.drawImage(images.createImage(`
                 # # # # # # # # # #
                 # # # # # # # # # #
                 # # # # # # # # # #
                 `), x - 5, 61, !color, false, false)
-                OLED.drawText("lives: " + lives.toString(), 0, 0, !color, false)
-                OLED.drawText("score: " + score.toString(), 0, 11, !color, false)
-                OLED.draw()
+                oled.drawText("lives: " + lives.toString(), 0, 0, !color, false)
+                oled.drawText("score: " + score.toString(), 0, 11, !color, false)
+                oled.draw()
             } else {
-                OLED.clear(!color)
-                OLED.drawText("you lost", 25, 10, color, false)
-                OLED.drawText("score: " + score.toString(), 25, 21, color, false)
-                OLED.drawText("A: continue", 25, 32, color, false)
-                OLED.draw()
+                oled.clear(!color)
+                oled.drawText("you lost", 25, 10, color, false)
+                oled.drawText("score: " + score.toString(), 25, 21, color, false)
+                oled.drawText("A: continue", 25, 32, color, false)
+                oled.draw()
                 if (controlling == Control.AB) {
                     if (input.buttonIsPressed(Button.A)) {
                         play = false
                         lastScore.push(score)
-                        OLED.clear(false)
-                        OLED.draw()
+                        oled.clear(false)
+                        oled.draw()
                     }
                 }
                 if (controlling == Control.ABReverse) {
                     if (input.buttonIsPressed(Button.A)) {
                         play = false
                         lastScore.push(score)
-                        OLED.clear(false)
-                        OLED.draw()
+                        oled.clear(false)
+                        oled.draw()
                     }
                 }
                 if (controlling == Control.ADKeyboard) {
                     if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
                         play = false
                         lastScore.push(score)
-                        OLED.clear(false)
-                        OLED.draw()
+                        oled.clear(false)
+                        oled.draw()
                     }
                 }
             }
@@ -156,7 +156,7 @@ namespace games {
         for (let i = 0; i < nApples; i++) {
             apples.push([randint(5, 58), randint(5, 26)])
         }
-        OLED.init()
+        oled.init()
         let keyPressed = [false, false]
         while (play) {
             if (live) {
@@ -258,53 +258,53 @@ namespace games {
                     positions.removeAt(0)
                 }
                 positions.push(forward)
-                OLED.clear(color)
-                OLED.drawRect(0, 0, 127, 63, true, false, false)
-                OLED.drawRect(1, 1, 126, 62, !color, false, false)
+                oled.clear(color)
+                oled.drawRect(0, 0, 127, 63, true, false, false)
+                oled.drawRect(1, 1, 126, 62, !color, false, false)
                 for (let pos of positions) {
-                    OLED.setPx(pos[0] * 2, pos[1] * 2, !color)
-                    OLED.setPx(pos[0] * 2 + 1, pos[1] * 2, !color)
-                    OLED.setPx(pos[0] * 2, pos[1] * 2 + 1, !color)
-                    OLED.setPx(pos[0] * 2 + 1, pos[1] * 2 + 1, !color)
+                    oled.setPx(pos[0] * 2, pos[1] * 2, !color)
+                    oled.setPx(pos[0] * 2 + 1, pos[1] * 2, !color)
+                    oled.setPx(pos[0] * 2, pos[1] * 2 + 1, !color)
+                    oled.setPx(pos[0] * 2 + 1, pos[1] * 2 + 1, !color)
                 }
                 for (let apple of apples) {
-                    //OLED.setPx(apple[0] * 2, apple[1] * 2, !color)
-                    OLED.setPx(apple[0] * 2 + 1, apple[1] * 2, !color)
-                    OLED.setPx(apple[0] * 2, apple[1] * 2 + 1, !color)
-                    OLED.setPx(apple[0] * 2 + 1, apple[1] * 2 + 1, !color)
+                    //oled.setPx(apple[0] * 2, apple[1] * 2, !color)
+                    oled.setPx(apple[0] * 2 + 1, apple[1] * 2, !color)
+                    oled.setPx(apple[0] * 2, apple[1] * 2 + 1, !color)
+                    oled.setPx(apple[0] * 2 + 1, apple[1] * 2 + 1, !color)
                 }
-                OLED.draw()
+                oled.draw()
                 const time2 = control.millis()
                 const time = time2 - time1
                 basic.pause(100 - time)
             } else {
-                OLED.clear(!color)
-                OLED.drawText("you lost", 25, 10, color, false)
-                OLED.drawText("score: " + score.toString(), 25, 21, color, false)
-                OLED.drawText("A: continue", 25, 32, color, false)
-                OLED.draw()
+                oled.clear(!color)
+                oled.drawText("you lost", 25, 10, color, false)
+                oled.drawText("score: " + score.toString(), 25, 21, color, false)
+                oled.drawText("A: continue", 25, 32, color, false)
+                oled.draw()
                 if (controlling == Control.AB) {
                     if (input.buttonIsPressed(Button.A)) {
                         play = false
                         lastScore.push(score)
-                        OLED.clear(false)
-                        OLED.draw()
+                        oled.clear(false)
+                        oled.draw()
                     }
                 }
                 if (controlling == Control.ABReverse) {
                     if (input.buttonIsPressed(Button.A)) {
                         play = false
                         lastScore.push(score)
-                        OLED.clear(false)
-                        OLED.draw()
+                        oled.clear(false)
+                        oled.draw()
                     }
                 }
                 if (controlling == Control.ADKeyboard) {
                     if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
                         play = false
                         lastScore.push(score)
-                        OLED.clear(false)
-                        OLED.draw()
+                        oled.clear(false)
+                        oled.draw()
                     }
                 }
             }
@@ -320,7 +320,7 @@ namespace games {
         let exit = 3
         let add_y = 0
         let air_time = 5
-        OLED.init()
+        oled.init()
         let y = 32
         let live = true
         let walls = ["32 64"]
@@ -356,8 +356,8 @@ namespace games {
                     }
                 }
 
-                OLED.clear(color)
-                OLED.drawRect(5, y, 7, y + 2, !color, true, false)
+                oled.clear(color)
+                oled.drawRect(5, y, 7, y + 2, !color, true, false)
                 if (parseInt(walls[walls.length - 1].split(" ")[1]) < 100) {
                     walls.push(randint(20, 46).toString() + " 127")
                 }
@@ -390,52 +390,52 @@ namespace games {
                         if (speed == Speed.Furious) {
                             walls[walls.indexOf(i)] = i.split(" ")[0] + " " + (parseInt(i.split(" ")[1]) - 4).toString()
                         }
-                        OLED.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, !color, false)
-                        OLED.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, !color, false)
+                        oled.drawLine(parseInt(i.split(" ")[1]), 0, parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) - 10, !color, false)
+                        oled.drawLine(parseInt(i.split(" ")[1]), parseInt(i.split(" ")[0]) + 10, parseInt(i.split(" ")[1]), 63, !color, false)
                     }
                 }
                 if (live) {
                     if (rendernigLevel == RenderingLevel.Score) {
-                        OLED.drawText(score.toString(), 1, 1, !color, false)
+                        oled.drawText(score.toString(), 1, 1, !color, false)
                     }
                     if (rendernigLevel == RenderingLevel.ScoreSpeed) {
-                        OLED.drawText(score.toString(), 1, 1, !color, false)
+                        oled.drawText(score.toString(), 1, 1, !color, false)
                         if (speed == Speed.Slow) {
-                            OLED.drawText("slow", 96, 1, !color, false)
+                            oled.drawText("slow", 96, 1, !color, false)
                         }
                         if (speed == Speed.Normal) {
-                            OLED.drawText("normal", 82, 1, !color, false)
+                            oled.drawText("normal", 82, 1, !color, false)
                         }
                         if (speed == Speed.Fast) {
-                            OLED.drawText("fast", 98, 1, !color, false)
+                            oled.drawText("fast", 98, 1, !color, false)
                         }
                         if (speed == Speed.Furious) {
-                            OLED.drawText("furious", 73, 1, !color, false)
+                            oled.drawText("furious", 73, 1, !color, false)
                         }
                     }
-                    OLED.draw()
+                    oled.draw()
                 }
             } else {
                 if (exit != -1) {
-                    OLED.clear(!color)
-                    OLED.drawText("you lost", 25, 10, color, false)
-                    OLED.drawText("score: " + score.toString(), 25, 21, color, false)
+                    oled.clear(!color)
+                    oled.drawText("you lost", 25, 10, color, false)
+                    oled.drawText("score: " + score.toString(), 25, 21, color, false)
                     if (exit == 0) {
-                        OLED.drawText("A: continue", 25, 32, color, false)
+                        oled.drawText("A: continue", 25, 32, color, false)
                         if (restart != 0) {
-                            OLED.drawText("B: restart", 25, 43, color, false)
+                            oled.drawText("B: restart", 25, 43, color, false)
                         }
                         exit -= 1
                     }
-                    OLED.draw()
+                    oled.draw()
                 }
                 if (exit == -1) {
                     if (controlling == Control.AB) {
                         if (input.buttonIsPressed(Button.A)) {
                             play = false
                             lastScore.push(score)
-                            OLED.clear(false)
-                            OLED.draw()
+                            oled.clear(false)
+                            oled.draw()
                         }
                         if (input.buttonIsPressed(Button.B) && restart != 0) {
                             lastScore.push(score)
@@ -447,8 +447,8 @@ namespace games {
                         if (input.buttonIsPressed(Button.A)) {
                             play = false
                             lastScore.push(score)
-                            OLED.clear(false)
-                            OLED.draw()
+                            oled.clear(false)
+                            oled.draw()
                         }
                         if (input.buttonIsPressed(Button.B) && restart != 0) {
                             lastScore.push(score)
@@ -460,8 +460,8 @@ namespace games {
                         if (ADKeyboard.adKeyboardIsPressed(ADKeys.A, AnalogPin.P1)) {
                             play = false
                             lastScore.push(score)
-                            OLED.clear(false)
-                            OLED.draw()
+                            oled.clear(false)
+                            oled.draw()
                         }
                         if (ADKeyboard.adKeyboardIsPressed(ADKeys.B, AnalogPin.P1) && restart != 0) {
                             lastScore.push(score)
@@ -499,7 +499,7 @@ namespace games {
         const games = ["Flappy Bird", "Snake", "catch the apples"]
         let keyPressed = [false, false]
         let selected = false
-        OLED.init()
+        oled.init()
         while (true) {
             if (controlling == Control.AB) {
                 if (input.buttonIsPressed(Button.A)) {
@@ -583,9 +583,9 @@ namespace games {
             if (select < 0) {
                 select = games.length - 1
             }
-            OLED.clear(false)
-            OLED.drawText(games[select], 0, 0, true, false)
-            OLED.draw()
+            oled.clear(false)
+            oled.drawText(games[select], 0, 0, true, false)
+            oled.draw()
         }
     }
 }
