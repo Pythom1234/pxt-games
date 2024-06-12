@@ -4,8 +4,8 @@
     "dependencies": {
         "core": "*",
         "microphone": "*",
-        "OLED": "github:pythom1234/pxt-oled#v2.0.0",
-        "ADKeyboard": "github:pythom1234/pxt-adkeyboard#v1.0.3"
+        "ADKeyboard": "github:pythom1234/pxt-adkeyboard#v1.0.3",
+        "oled": "github:pythom1234/pxt-oled#v2.2.5"
     },
     "files": [
         "main.ts",
